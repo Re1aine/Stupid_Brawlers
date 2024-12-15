@@ -4,6 +4,9 @@ using UnityEngine.UI;
 
 public class UIContainer : MonoBehaviour
 {
+    public BulletField BulletField => _bulletField;
+    public LvlCompleteWindow LvlCompleteWindow => _completeWindow;
+    
     [SerializeField] private BulletField _bulletField;
     [SerializeField] private LvlCompleteWindow _completeWindow;
     [SerializeField] private TextMeshProUGUI _scoreValueText;
@@ -17,58 +20,39 @@ public class UIContainer : MonoBehaviour
     
     private LevelContext _levelContext;
     private LevelDispatcher _levelDispatcher;
+    private RewardCoordinator _rewardCoordinator;
 
-    public void Construct(LevelContext levelContext, LevelDispatcher levelDispatcher)
+    public void Construct(LevelContext levelContext, LevelDispatcher levelDispatcher, RewardCoordinator rewardCoordinator)
     {
+        _rewardCoordinator = rewardCoordinator;
         _levelContext = levelContext;
         _levelDispatcher = levelDispatcher;
     }
 
-    public void SetGameStateMachine(GameStateMachine gameStateMachine)
-    {
+    public void SetGameStateMachine(GameStateMachine gameStateMachine) => 
         _gameStateMachine = gameStateMachine;
-    }
 
     public void Run()
     {
+        _completeWindow.Construct(_gameStateMachine);
         _bulletField.AddBullet(_levelContext.Player.GunView.GetBulletCount());
-        
+
         _menuButton.onClick.AddListener(() => _gameStateMachine.Enter<LoadMenuState>());
         _retryButton.onClick.AddListener(() => _gameStateMachine.Enter<LoadLevelState>(SceneNavigator.GetCurrentLvlName()));
-        
-        _completeWindow.Construct(_gameStateMachine);
-        
-        _levelDispatcher.OnPlayerShooted += _bulletField.SubtractBullet;
-        _levelDispatcher.OnRewardPointsAssigned += SetScoreValue;
-        _levelDispatcher.OnAllRewardPointsAssigned += _completeWindow.SetScore;
-        
-        _levelDispatcher.OnLevelCompleted += ShowCompleteWindow;
-
-       // _levelDispatcher.OnAllBulletsFinished += ShowBulletFinishedScreen;
     }
-
-    private void OnDisable()
+    
+    public void SetRewardScore(int value)
     {
-        _levelDispatcher.OnPlayerShooted -= _bulletField.SubtractBullet;
-        _levelDispatcher.OnRewardPointsAssigned -= SetScoreValue;
-        _levelDispatcher.OnAllRewardPointsAssigned -= _completeWindow.SetScore;
-        
-        _levelDispatcher.OnLevelCompleted -= ShowCompleteWindow;
-        
-        //_levelDispatcher.OnAllBulletsFinished += ShowBulletFinishedScreen;
+        _scoreValueText.text = value.ToString();
+        _completeWindow.SetScore(value);
     }
 
-    private void ShowCompleteWindow()
+    public void ShowCompleteWindow()
     {
         _parentResultsWindow.gameObject.SetActive(true);
         _completeWindow.gameObject.SetActive(true);
     }
     
-    private void SetScoreValue(int scoreValue) => 
-        _scoreValueText.text = scoreValue.ToString();
-
-    private void ShowBulletFinishedScreen()
-    {
+    private void ShowBulletFinishedScreen() => 
         _bulletFinishedScreen.SetActive(true);
-    }
 }

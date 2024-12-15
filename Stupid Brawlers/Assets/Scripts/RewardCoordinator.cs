@@ -1,10 +1,18 @@
+using System;
 using UnityEngine;
 
-public class RewardCoordinator
+public class RewardCoordinator : IDisposable
 {
-    //public event Action OnRewardAssigned
+    public event Action<int> OnRewardAssigned;
     
     private readonly PointsCounter _pointsCounter = new();
+
+    public RewardCoordinator()
+    {
+        _pointsCounter.ReceivePoints.OnValueChanged += RewardAssigned;
+    }
+
+    private void RewardAssigned(int value) => OnRewardAssigned?.Invoke(value);
 
     public void AssignRewardForEnemy(Enemy enemy)
     {
@@ -15,8 +23,5 @@ public class RewardCoordinator
                   enemy.GetRewardValue() + "] <color=yellow>");
     }
     
-    //public int GetAllAssignedRewardValue()
-    //{
-    //    return _pointsCounter.GetReceivedPoints();
-    //}
+    public void Dispose() => _pointsCounter.ReceivePoints.OnValueChanged -= RewardAssigned;
 }

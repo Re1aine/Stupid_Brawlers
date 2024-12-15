@@ -13,7 +13,6 @@ public class GunView : MonoBehaviour
 
     private Vector3 _shootDirection;
     private int _bulletCount;
-    
     private float _timeRemainToShoot;
     
     public void Construct(LevelFactory levelFactory, int bulletCount)
@@ -22,11 +21,9 @@ public class GunView : MonoBehaviour
         _bulletCount = bulletCount;
     }
     
-    public void SetBulletCount(int bulletCount) => _bulletCount = bulletCount;
+    public void Update() => _timeRemainToShoot -= Time.deltaTime;
     
     public int GetBulletCount() => _bulletCount;
-
-    public void Update() => _timeRemainToShoot -= Time.deltaTime;
 
     public void Shoot()
     {

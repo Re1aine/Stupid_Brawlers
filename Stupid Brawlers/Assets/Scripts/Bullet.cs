@@ -8,20 +8,12 @@ public class Bullet : MonoBehaviour
     
     [SerializeField] private int _reboundCount;
     [SerializeField] private float _speed;
-
-    private LevelDispatcher _levelDispatcher;
     
     private Rigidbody2D _rigidbody2D;
     private TrailRenderer _trailRenderer;
 
     private Vector3 _direction;
     private int _remainBound;
-
-
-    public void Construct(LevelDispatcher levelDispatcher)
-    {
-        _levelDispatcher = levelDispatcher;
-    }
     
     private void Awake()
     {
