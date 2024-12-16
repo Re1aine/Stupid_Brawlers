@@ -8,7 +8,7 @@ public class SceneGC : IDisposable
 {
     public void AddEntity(MonoBehaviour entity) => _entities.Add(entity);
 
-    private List<MonoBehaviour> _entities = new List<MonoBehaviour>();
+    private readonly List<MonoBehaviour> _entities = new();
     public void Dispose()
     {
         foreach (var e in _entities.Where(e => e != null)) 

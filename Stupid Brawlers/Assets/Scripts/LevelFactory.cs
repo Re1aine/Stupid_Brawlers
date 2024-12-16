@@ -18,7 +18,7 @@ public class LevelFactory
         var playerView = AssetProvider.InstantiateAt<PlayerView>(AssetDataPath.PlayerPrefab, position);
         Player player = new Player(playerView);
 
-        _levelContext.Player = playerView;
+        _levelContext.SetPlayer(playerView);
         _sceneGC.AddEntity(playerView);
         
         playerView.Construct(player);
@@ -55,10 +55,11 @@ public class LevelFactory
     {
         var ui =  AssetProvider.Instantiate<UIContainer>(AssetDataPath.UIContainerPrefab);
         ui.SetGameStateMachine(_gameStateMachine);
-        
+        ui.Run();
+
         _levelContext.SetUI(ui);
         _sceneGC.AddEntity(ui);
-
+        
         return ui;
     }
     
@@ -66,6 +67,7 @@ public class LevelFactory
     {
         var popUpMaster = AssetProvider.Instantiate<PopupMaster>(AssetDataPath.PopupMaster);
         
+        _levelContext.SetPopupMaster(popUpMaster);
         _sceneGC.AddEntity(popUpMaster);
         
         return popUpMaster;

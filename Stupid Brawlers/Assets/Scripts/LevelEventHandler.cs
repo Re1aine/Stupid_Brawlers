@@ -14,14 +14,12 @@ public class LevelEventHandler : IDisposable
     
     public LevelEventHandler(LevelContext levelContext,
         RewardCoordinator rewardCoordinator,
-        PopupMaster popUpMaster,
         ICoroutineExecutor coroutineExecutor,
         LevelDispatcher levelDispatcher)
         
     {
         _levelContext = levelContext;
         _rewardCoordinator = rewardCoordinator;
-        _popUpMaster = popUpMaster;
         _coroutineExecutor = coroutineExecutor;
         _levelDispatcher = levelDispatcher;
     }
@@ -44,7 +42,7 @@ public class LevelEventHandler : IDisposable
     {
         _levelContext.RemoveEnemy(enemy);
         _rewardCoordinator.AssignRewardForEnemy(enemy);
-        _popUpMaster.CreatePopUpAt(enemy);
+        _levelContext.PopupMaster.CreatePopUpAt(enemy);
         
         if (_levelContext.Enemies.Count > 0)
             return;

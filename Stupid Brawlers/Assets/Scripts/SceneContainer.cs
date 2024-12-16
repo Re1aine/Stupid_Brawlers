@@ -10,7 +10,7 @@ public class SceneContainer : MonoBehaviour
     private PlayerSpawnPoint _playerSpawnPoint;
     private List<EnemySpawnPoint> _enemySpawnPoints;
 
-    public void Run()
+    public void Start()
     {
         _playerSpawnPoint = GetComponentsInChildren<PlayerSpawnPoint>().FirstOrDefault();
         _enemySpawnPoints = GetComponentsInChildren<EnemySpawnPoint>().ToList();        

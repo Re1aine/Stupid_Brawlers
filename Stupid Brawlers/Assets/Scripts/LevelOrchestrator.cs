@@ -32,34 +32,25 @@ public class LevelOrchestrator : IDisposable
     public void Run()
     {
         InitSceneContainer();
-        _sceneContainer.Run();
-
+        
+        
         _sceneGC = new SceneGC();
-        _rewardCoordinator = new RewardCoordinator();
         _context = new LevelContext();
         _dispatcher = new LevelDispatcher();
+        _rewardCoordinator = new RewardCoordinator();
         _levelFactory = new LevelFactory(_gameStateMachine, _context, _sceneGC);
         _levelEntityEventMatcher = new LevelEntityEventMatcher(_context, _dispatcher, _rewardCoordinator);
+        _levelEventHandler = new LevelEventHandler(_context, _rewardCoordinator, _coroutineExecutor, _dispatcher);
+
         
-        var popupMaster = _levelFactory.CreatePopupMaster();
+        _sceneContainer.EnemySpawnPoints.ForEach(p => _levelFactory.CreateEnemy(p.transform.position));
+        _levelFactory.CreatePlayer(_sceneContainer.PlayerSpawnPoint.transform.position,3);
+        _levelFactory.CreateUIContainer();
+        _levelFactory.CreatePopupMaster();
+
         
-        _levelEventHandler = new LevelEventHandler(_context, _rewardCoordinator, popupMaster, _coroutineExecutor, _dispatcher);
+        _levelEntityEventMatcher.Run();
         _levelEventHandler.Run();
-
-
-        var uiContainer = _levelFactory.CreateUIContainer();
-        uiContainer.Run();
-        
-        foreach (var point in _sceneContainer.EnemySpawnPoints) 
-            _levelFactory.CreateEnemy(point.transform.position);
-
-        var player = _levelFactory.CreatePlayer(_sceneContainer.PlayerSpawnPoint.transform.position,3);
-        
-        
-        foreach (var enemy in _context.Enemies)
-            _levelEntityEventMatcher.MatchEnemy(enemy);
-        _levelEntityEventMatcher.MatchPlayer(player, uiContainer);
-        _levelEntityEventMatcher.MatchUI(uiContainer);
     }
 
     public void Dispose()
