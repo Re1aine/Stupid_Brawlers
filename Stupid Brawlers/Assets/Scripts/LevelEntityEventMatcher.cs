@@ -13,24 +13,19 @@ public class LevelEntityEventMatcher : IDisposable
         _rewardCoordinator = rewardCoordinator;
     }    
     
-    public void BindPlayer(PlayerView playerView, UIContainer uiContainer)
+    public void MatchPlayer(PlayerView playerView, UIContainer uiContainer)
     {
         playerView.GunView.OnShoot += _levelDispatcher.DispatchPlayerWantsToShoot;
         playerView.GunView.OnAllBulletsFinished += _levelDispatcher.DispatchAllBulletsFinished;
         playerView.GunView.BulletCount.OnValueChanged += uiContainer.BulletField.UpdateBulletCount;
     }
 
-    public void BindEnemy(Enemy enemy)
+    public void MatchEnemy(Enemy enemy)
     {
         enemy.OnDied += _levelDispatcher.DispatchEnemyDied;
     }
-
-    private void BindBullet(Bullet bullet)
-    {
-        bullet.OnDestroyed += _levelContext.RemoveShootedBullet;
-    }
-
-    public void BindUI(UIContainer uiContainer)
+    
+    public void MatchUI(UIContainer uiContainer)
     {
         _levelDispatcher.OnLevelCompleted += uiContainer.ShowCompleteWindow;
         _rewardCoordinator.OnRewardAssigned += uiContainer.SetRewardScore;
@@ -38,20 +33,12 @@ public class LevelEntityEventMatcher : IDisposable
     
     public void Dispose()
     {
-        _levelContext.Player.GunView.OnShoot += _levelDispatcher.DispatchPlayerWantsToShoot;
-        _levelContext.Player.GunView.OnAllBulletsFinished += _levelDispatcher.DispatchAllBulletsFinished;
-        _levelContext.Player.GunView.BulletCount.OnValueChanged += _levelContext.UI.BulletField.UpdateBulletCount;
-        
+        _levelContext.Player.GunView.OnShoot -= _levelDispatcher.DispatchPlayerWantsToShoot;
+        _levelContext.Player.GunView.OnAllBulletsFinished -= _levelDispatcher.DispatchAllBulletsFinished;
+        _levelContext.Player.GunView.BulletCount.OnValueChanged -= _levelContext.UI.BulletField.UpdateBulletCount;
+
         foreach (var enemy in _levelContext.Enemies) 
             enemy.OnDied -= _levelDispatcher.DispatchEnemyDied;
-        
-        _levelContext
-            .Player
-            .GunView.OnShoot -= _levelDispatcher.DispatchPlayerWantsToShoot;
-        
-        _levelContext
-            .Player
-            .GunView.OnAllBulletsFinished -= _levelDispatcher.DispatchAllBulletsFinished;
         
         _levelDispatcher.OnLevelCompleted -= _levelContext.UI.ShowCompleteWindow;
         _rewardCoordinator.OnRewardAssigned -= _levelContext.UI.SetRewardScore;

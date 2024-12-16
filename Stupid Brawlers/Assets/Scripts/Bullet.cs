@@ -4,8 +4,6 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Bullet : MonoBehaviour
 {
-    public event Action<Bullet> OnDestroyed;
-    
     [SerializeField] private int _reboundCount;
     [SerializeField] private float _speed;
     
@@ -49,10 +47,7 @@ public class Bullet : MonoBehaviour
         else if (other.gameObject.TryGetComponent(out Enemy enemy))
             enemy.Die();
         else
-        {
-            OnDestroyed?.Invoke(this);
             Destroy(gameObject);
-        }
     }
 
     public void RotateToDirection(Vector3 direction)

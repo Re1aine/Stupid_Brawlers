@@ -7,7 +7,6 @@ public class LevelContext : IDisposable
     public PlayerView Player { get; set; }
     public List<Enemy> Enemies { get; } = new();
     public List<Bullet> ShootedBullets { get; set; } = new();
-    
     public UIContainer UI { get; set; }
     
     public void RemoveEnemy(Enemy enemy) => Enemies.Remove(enemy);

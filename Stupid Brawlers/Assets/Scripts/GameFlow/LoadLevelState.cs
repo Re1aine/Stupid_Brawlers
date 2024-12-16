@@ -1,4 +1,3 @@
-using System;
 
 public class LoadLevelState : IParameterizedState
 {
@@ -26,7 +25,7 @@ public class LoadLevelState : IParameterizedState
 
     private void OnLoad()
     {
-         _levelOrchestrator = new LevelOrchestrator(_gameStateMachine, _gameFactory, _coroutineExecutor);
+         _levelOrchestrator = new LevelOrchestrator(_gameStateMachine, _coroutineExecutor);
          _levelOrchestrator.Run();
     }
 
@@ -34,10 +33,4 @@ public class LoadLevelState : IParameterizedState
     {
         _levelOrchestrator.Dispose();
     }
-}
-
-public enum GameScene
-{
-    Bootstrap = 0,
-    Menu = 1,
 }
