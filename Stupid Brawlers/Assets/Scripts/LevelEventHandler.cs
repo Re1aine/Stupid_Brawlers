@@ -75,7 +75,8 @@ public class LevelEventHandler : IDisposable
         if (_levelContext
                 .Player
                 .GunView
-                .GetBulletCount() > 0) return;
+                .BulletCount
+                .Value > 0) return;
         
         Debug.Log("<b><color=green> [LEVEL DISPATCHER] <color=green>" +
                   " <color=red> BULLETS ARE FINISHED <color=red>");

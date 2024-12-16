@@ -4,6 +4,7 @@ using Object = UnityEngine.Object;
 
 public class LevelOrchestrator : IDisposable
 {
+    private readonly GameStateMachine _gameStateMachine;
     private readonly GameFactory _gameFactory;
     private readonly ICoroutineExecutor _coroutineExecutor;
 
@@ -13,11 +14,12 @@ public class LevelOrchestrator : IDisposable
     private RewardCoordinator _rewardCoordinator;
     private SceneContainer _sceneContainer;
     
-    private LevelEventBinder _levelEventBinder;
+    private LevelEntityEventMatcher _levelEntityEventMatcher;
     private LevelEventHandler _levelEventHandler;
 
-    public LevelOrchestrator(GameFactory gameFactory, ICoroutineExecutor coroutineExecutor)
+    public LevelOrchestrator(GameStateMachine gameStateMachine, GameFactory gameFactory, ICoroutineExecutor coroutineExecutor)
     {
+        _gameStateMachine = gameStateMachine;
         _gameFactory = gameFactory;
         _coroutineExecutor = coroutineExecutor;
     }
@@ -34,8 +36,8 @@ public class LevelOrchestrator : IDisposable
         _rewardCoordinator = new RewardCoordinator();
         _context = new LevelContext();
         _dispatcher = new LevelDispatcher();
-        _levelFactory = new LevelFactory(_context);
-        _levelEventBinder = new LevelEventBinder(_context, _dispatcher, _rewardCoordinator);
+        _levelFactory = new LevelFactory(_gameStateMachine, _context);
+        _levelEntityEventMatcher = new LevelEntityEventMatcher(_context, _dispatcher, _rewardCoordinator);
         
         var popupMaster = _levelFactory.CreatePopupMaster();
         
@@ -43,26 +45,25 @@ public class LevelOrchestrator : IDisposable
         _levelEventHandler.Run();
 
 
-        var player = _levelFactory.CreatePlayer(_sceneContainer.PlayerSpawnPoint.transform.position,3);
-
+        var uiContainer = _levelFactory.CreateUIContainer();
+        uiContainer.Run();
+        
         foreach (var point in _sceneContainer.EnemySpawnPoints) 
             _levelFactory.CreateEnemy(point.transform.position);
 
-        var uiContainer = _gameFactory.CreateUIContainer();
-        uiContainer.Construct(_context, _dispatcher, _rewardCoordinator);
-        uiContainer.Run();
-
-
+        var player = _levelFactory.CreatePlayer(_sceneContainer.PlayerSpawnPoint.transform.position,3);
+        
+        
         foreach (var enemy in _context.Enemies)
-            _levelEventBinder.BindEnemy(enemy);
-        _levelEventBinder.BindPlayer(player);
-        _levelEventBinder.BindUI(uiContainer);
+            _levelEntityEventMatcher.BindEnemy(enemy);
+        _levelEntityEventMatcher.BindPlayer(player, uiContainer);
+        _levelEntityEventMatcher.BindUI(uiContainer);
     }
 
     public void Dispose()
     {
         _rewardCoordinator.Dispose();
-        _levelEventBinder.Dispose();
+        _levelEntityEventMatcher.Dispose();
         _levelEventHandler.Dispose();
         _context.Dispose();
     }

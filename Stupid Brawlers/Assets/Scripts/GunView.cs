@@ -5,29 +5,40 @@ public class GunView : MonoBehaviour
 {
     public event Action OnShoot; 
     public event Action OnAllBulletsFinished;
+
+    public ReadOnlyReactiveProperty<int> BulletCount => new(_bulletCount);
+    private readonly ReactiveProperty<int> _bulletCount = new();
     
     [SerializeField] private Transform _shootPoint;
     [SerializeField, Range(0f, 1.5f)] private float _delayRecharge;
 
     private LevelFactory _levelFactory;
 
+    private int _bulletInitValue;
     private Vector3 _shootDirection;
-    private int _bulletCount;
     private float _timeRemainToShoot;
-    
-    public void Construct(LevelFactory levelFactory, int bulletCount)
+
+    public void Start()
+    {
+        _bulletCount.SetValue(_bulletInitValue);      // I made this 'cause i can't ReactiveProperty sub instant GameObject create any other way 
+    }
+
+    public void Construct(LevelFactory levelFactory)
     {
         _levelFactory = levelFactory;
-        _bulletCount = bulletCount;
+    }
+
+    public void SetBulletCount(int value)
+    {
+        _bulletInitValue = value;
+        _bulletCount.SetValue(value);
     }
     
     public void Update() => _timeRemainToShoot -= Time.deltaTime;
     
-    public int GetBulletCount() => _bulletCount;
-
     public void Shoot()
     {
-        if (_bulletCount <= 0)
+        if (_bulletCount.Value <= 0)
         {
             OnAllBulletsFinished?.Invoke();
             return;
@@ -37,7 +48,8 @@ public class GunView : MonoBehaviour
             
         _levelFactory.CreateBullet(_shootPoint.position, _shootDirection);
         
-        _bulletCount -= 1;
+        SetBulletCount(_bulletCount.Value - 1);
+        
         _timeRemainToShoot = _delayRecharge;
         
         OnShoot?.Invoke();

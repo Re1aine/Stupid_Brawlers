@@ -26,7 +26,7 @@ public class LoadLevelState : IParameterizedState
 
     private void OnLoad()
     {
-         _levelOrchestrator = new LevelOrchestrator(_gameFactory, _coroutineExecutor);
+         _levelOrchestrator = new LevelOrchestrator(_gameStateMachine, _gameFactory, _coroutineExecutor);
          _levelOrchestrator.Run();
     }
 

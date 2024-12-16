@@ -18,24 +18,12 @@ public class UIContainer : MonoBehaviour
     
     private GameStateMachine _gameStateMachine;
     
-    private LevelContext _levelContext;
-    private LevelDispatcher _levelDispatcher;
-    private RewardCoordinator _rewardCoordinator;
-
-    public void Construct(LevelContext levelContext, LevelDispatcher levelDispatcher, RewardCoordinator rewardCoordinator)
-    {
-        _rewardCoordinator = rewardCoordinator;
-        _levelContext = levelContext;
-        _levelDispatcher = levelDispatcher;
-    }
-
     public void SetGameStateMachine(GameStateMachine gameStateMachine) => 
         _gameStateMachine = gameStateMachine;
 
     public void Run()
     {
         _completeWindow.Construct(_gameStateMachine);
-        _bulletField.AddBullet(_levelContext.Player.GunView.GetBulletCount());
 
         _menuButton.onClick.AddListener(() => _gameStateMachine.Enter<LoadMenuState>());
         _retryButton.onClick.AddListener(() => _gameStateMachine.Enter<LoadLevelState>(SceneNavigator.GetCurrentLvlName()));
