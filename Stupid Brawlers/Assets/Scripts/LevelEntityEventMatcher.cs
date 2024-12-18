@@ -26,7 +26,7 @@ public class LevelEntityEventMatcher : IDisposable
     {
         _levelContext.Player.GunView.OnShoot += _levelDispatcher.DispatchPlayerWantsToShoot;
         _levelContext.Player.GunView.OnAllBulletsFinished += _levelDispatcher.DispatchAllBulletsFinished;
-        _levelContext.Player.GunView.BulletCount.OnValueChanged += _levelContext.UI.BulletField.UpdateBulletCount;
+        
     }
 
     private void MatchEnemy()
@@ -39,18 +39,19 @@ public class LevelEntityEventMatcher : IDisposable
     {
         _levelDispatcher.OnLevelCompleted += _levelContext.UI.ShowCompleteWindow;
         _rewardCoordinator.OnRewardAssigned += _levelContext.UI.SetRewardScore;
+        _levelContext.UI.BulletField.InitBulletCount(_levelContext.Player.GunView.BulletCount);
     }
     
     public void Dispose()
     {
         _levelContext.Player.GunView.OnShoot -= _levelDispatcher.DispatchPlayerWantsToShoot;
         _levelContext.Player.GunView.OnAllBulletsFinished -= _levelDispatcher.DispatchAllBulletsFinished;
-        _levelContext.Player.GunView.BulletCount.OnValueChanged -= _levelContext.UI.BulletField.UpdateBulletCount;
 
         foreach (var enemy in _levelContext.Enemies) 
             enemy.OnDied -= _levelDispatcher.DispatchEnemyDied;
         
         _levelDispatcher.OnLevelCompleted -= _levelContext.UI.ShowCompleteWindow;
         _rewardCoordinator.OnRewardAssigned -= _levelContext.UI.SetRewardScore;
+        _levelContext.UI.BulletField.Dispose();        
     }
 }

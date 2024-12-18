@@ -1,11 +1,14 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BulletField : MonoBehaviour
+public class BulletField : MonoBehaviour, IDisposable
 {
     [SerializeField] private Image _bulletIcon;
     [SerializeField] private Transform _content;
 
+    private ReadOnlyReactiveProperty<int> _bulletCount;
+    
     private int _currentBulletsCount;
 
     public void UpdateBulletCount(int value)
@@ -18,6 +21,14 @@ public class BulletField : MonoBehaviour
         _currentBulletsCount = value;
     }
 
+    public void InitBulletCount(ReadOnlyReactiveProperty<int> value)
+    {
+        Dispose();
+        _bulletCount = value;
+        _bulletCount.OnValueChanged += UpdateBulletCount;
+        UpdateBulletCount(_bulletCount.Value);
+    }
+    
     private void AddBullet(int value)
     {
         for (int i = 0; i < value; i++) 
@@ -30,5 +41,11 @@ public class BulletField : MonoBehaviour
             return;
         
         Destroy(_content.GetChild(0).gameObject);
+    }
+
+    public void Dispose()
+    {
+        if(_bulletCount != null)
+            _bulletCount.OnValueChanged -= UpdateBulletCount;
     }
 }

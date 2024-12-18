@@ -32,8 +32,8 @@ public class LevelOrchestrator : IDisposable
     public void Run()
     {
         InitSceneContainer();
-        
-        
+
+
         _sceneGC = new SceneGC();
         _context = new LevelContext();
         _dispatcher = new LevelDispatcher();
@@ -42,12 +42,11 @@ public class LevelOrchestrator : IDisposable
         _levelEntityEventMatcher = new LevelEntityEventMatcher(_context, _dispatcher, _rewardCoordinator);
         _levelEventHandler = new LevelEventHandler(_context, _rewardCoordinator, _coroutineExecutor, _dispatcher);
 
-        
+
         _sceneContainer.EnemySpawnPoints.ForEach(p => _levelFactory.CreateEnemy(p.transform.position));
         _levelFactory.CreatePlayer(_sceneContainer.PlayerSpawnPoint.transform.position,3);
         _levelFactory.CreateUIContainer();
         _levelFactory.CreatePopupMaster();
-
         
         _levelEntityEventMatcher.Run();
         _levelEventHandler.Run();
