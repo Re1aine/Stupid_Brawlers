@@ -11,7 +11,7 @@ public class BulletField : MonoBehaviour, IDisposable
     
     private int _currentBulletsCount;
 
-    public void UpdateBulletCount(int value)
+    private void UpdateBulletCount(int value)
     {
         if (value > _currentBulletsCount)
             AddBullet(value - _currentBulletsCount);

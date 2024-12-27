@@ -52,13 +52,15 @@ public class LevelEventHandler : IDisposable
 
     private IEnumerator HandleDelayedOnLevelCompletedEvent()
     {
+        _levelContext.Player.LockInput();
+        
         yield return new WaitForSeconds(_delayLevelCompletedEvent);
+        
         _levelDispatcher.DispatchLevelCompleted();
     }
 
     private void HandleOnLevelCompletedEvent()
     {
-        _levelContext.Player.LockInput();
 
         foreach (var shootedBullet in _levelContext.ShootedBullets)
             if (shootedBullet != null)

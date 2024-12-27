@@ -39,7 +39,7 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.TryGetComponent(out Wall wall) & _remainBound > 0)
+        if (other.gameObject.TryGetComponent(out ReboundSurfaceMark surface) & _remainBound > 0)
         {
             var normal = other.GetContact(0).normal;
             ReboundBullet(normal);

@@ -1,21 +1,97 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Cursor : MonoBehaviour
 {
-    [SerializeField] private Sprite _scopeSprite;
+    [SerializeField] private float SpeedAnim;
+    
+    private SpriteRenderer _spriteRenderer;
     private Camera _camera;
+    
+    private Color _showColor;
+    private Color _hideColor;
 
-    private void Awake() => _camera = Camera.main;
+    private bool _isUpdatePos;
+    
+    private void Awake()
+    {
+        _camera = Camera.main;
+        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        _showColor = new Color(_spriteRenderer.color.r, _spriteRenderer.color.g, _spriteRenderer.color.b, 1);
+        _hideColor = new Color(_spriteRenderer.color.r, _spriteRenderer.color.g, _spriteRenderer.color.b, 0);
 
-    private void Start() => 
-        Instantiate(_scopeSprite, transform.position, Quaternion.identity);
+        _spriteRenderer.color = _hideColor;
+        _isUpdatePos = true;
+    }
 
+    public void StopUpdatePosition()
+    {
+        _isUpdatePos = false;
+    }
+
+    public void StartUpdatePosition()
+    {
+        _isUpdatePos = true;
+    }
+    
     private void Update()
     {
+        if(!_isUpdatePos) return;
+        
         transform.position = new Vector3(
             _camera.ScreenToWorldPoint(Input.mousePosition).x,
-            _camera.ScreenToWorldPoint(Input.mousePosition).y, 
+            _camera.ScreenToWorldPoint(Input.mousePosition).y,
             0);
     }
+
+    [ContextMenu("Hide")]
+    public void Hide()
+    {
+        StopAllCoroutines();
+        StartCoroutine(HideCursor());
+    }
+    
+    [ContextMenu("Show")]
+    public void Show()
+    {
+        StopAllCoroutines();
+        StartCoroutine(ShowCursor());
+    }
+
+    private IEnumerator HideCursor()
+    {
+        float elapsedTime = 0f;
+        
+        while (_spriteRenderer.color.a >= 0)
+        {
+            elapsedTime += Time.deltaTime;
+            
+            _spriteRenderer.color = Color.Lerp(
+                a: _spriteRenderer.color,
+                b: _hideColor,
+                t: elapsedTime / SpeedAnim);
+            
+            yield return null;
+        }
+    }
+
+    private IEnumerator ShowCursor()
+    {
+        float elapsedTime = 0f;
+        
+        while (_spriteRenderer.color.a <= 1)
+        {
+            elapsedTime += Time.deltaTime;
+            
+            _spriteRenderer.color = Color.Lerp(
+                a: _spriteRenderer.color,
+                b: _showColor,
+                t: (elapsedTime / SpeedAnim));
+            
+            yield return null;
+        }
+    } 
 }
 

@@ -13,15 +13,9 @@ public class GunView : MonoBehaviour
     [SerializeField, Range(0f, 1.5f)] private float _delayRecharge;
 
     private LevelFactory _levelFactory;
-
-    private int _bulletInitValue;
+    
     private Vector3 _shootDirection;
     private float _timeRemainToShoot;
-
-    //public void Start()
-    //{
-    //    _bulletCount.SetValue(_bulletInitValue);      // I made this 'cause i can't ReactiveProperty sub instant GameObject create any other way 
-    //}
 
     public void Construct(LevelFactory levelFactory)
     {
@@ -30,7 +24,6 @@ public class GunView : MonoBehaviour
 
     public void SetBulletCount(int value)
     {
-        _bulletInitValue = value;
         _bulletCount.SetValue(value);
     }
     
