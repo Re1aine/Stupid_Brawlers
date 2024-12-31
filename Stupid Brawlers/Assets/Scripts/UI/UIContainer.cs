@@ -27,6 +27,7 @@ public class UIContainer : MonoBehaviour
 
         _menuButton.onClick.AddListener(() => _gameStateMachine.Enter<LoadMenuState>());
         _retryButton.onClick.AddListener(() => _gameStateMachine.Enter<LoadLevelState>(SceneNavigator.GetCurrentLvlName()));
+        
     }
     
     public void SetRewardScore(int value)
@@ -44,3 +45,4 @@ public class UIContainer : MonoBehaviour
     private void ShowBulletFinishedScreen() => 
         _bulletFinishedScreen.SetActive(true);
 }
+

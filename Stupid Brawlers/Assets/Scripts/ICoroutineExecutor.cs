@@ -4,5 +4,5 @@ using UnityEngine;
 public interface ICoroutineExecutor
 {
     Coroutine StartCoroutine(IEnumerator coroutine);
-    void StopCoroutine(IEnumerator coroutine);
+    void StopCoroutine(Coroutine coroutine);
 }

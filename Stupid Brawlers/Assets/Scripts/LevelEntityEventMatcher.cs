@@ -5,18 +5,23 @@ public class LevelEntityEventMatcher : IDisposable
     private readonly LevelContext _levelContext;
     private readonly LevelDispatcher _levelDispatcher;
     private readonly RewardCoordinator _rewardCoordinator;
+    private readonly GlobalUIContainer _globalUI;
 
     public LevelEntityEventMatcher(LevelContext levelContext,
         LevelDispatcher levelDispatcher,
-        RewardCoordinator rewardCoordinator)
+        RewardCoordinator rewardCoordinator,
+        GlobalUIContainer globalUI)
     {
         _levelContext = levelContext;
         _levelDispatcher = levelDispatcher;
         _rewardCoordinator = rewardCoordinator;
+        _globalUI = globalUI;
     }
 
     public void Run()
     {
+        _globalUI.OnLoadScreenHidden += _levelDispatcher.DispatchLevelStarted;
+        
         MatchEnemy();
         MatchPlayer();
         MatchUI();
@@ -44,6 +49,8 @@ public class LevelEntityEventMatcher : IDisposable
     
     public void Dispose()
     {
+        _globalUI.OnLoadScreenHidden -= _levelDispatcher.DispatchLevelStarted;
+        
         _levelContext.Player.GunView.OnShoot -= _levelDispatcher.DispatchPlayerWantsToShoot;
         _levelContext.Player.GunView.OnAllBulletsFinished -= _levelDispatcher.DispatchAllBulletsFinished;
 

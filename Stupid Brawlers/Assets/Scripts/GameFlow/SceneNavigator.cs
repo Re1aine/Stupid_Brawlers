@@ -14,16 +14,9 @@ public static class SceneNavigator
 
     public static string GetName(GameScene gameScene) => 
         (int)gameScene == BootstrapSceneBuildIndex ? BootstrapSceneName : MenuSceneName;
-    
-    private static string GetNextSceneName()
-    {
-        var nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
-        
-        if (!IsSceneExist(nextSceneIndex))  
-            return string.Empty;
-            
-        return SceneManager.GetSceneByBuildIndex(nextSceneIndex).name;
-    }
+
+    public static GameScene GetCurrentGameScene() => 
+        SceneManager.GetActiveScene().buildIndex == BootstrapSceneBuildIndex ? GameScene.Bootstrap : GameScene.Menu;
 
     public static string GetNextLvlScene()
     {
@@ -36,6 +29,16 @@ public static class SceneNavigator
             return string.Empty;
 
         return GetSceneNameByIndex(nextLvlSceneIndex);
+    }
+
+    private static string GetNextSceneName()
+    {
+        var nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+        
+        if (!IsSceneExist(nextSceneIndex))  
+            return string.Empty;
+            
+        return SceneManager.GetSceneByBuildIndex(nextSceneIndex).name;
     }
 
     public static string GetCurrentLvlName() => 

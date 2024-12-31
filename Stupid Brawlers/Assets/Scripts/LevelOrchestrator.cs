@@ -1,10 +1,13 @@
 using System;
+using System.Collections;
+using UnityEngine;
 using Object = UnityEngine.Object;
 
 public class LevelOrchestrator : IDisposable
 {
     private readonly GameStateMachine _gameStateMachine;
-    private readonly ICoroutineExecutor _coroutineExecutor;
+    private readonly CoroutineExecutor _coroutineExecutor;
+    private readonly GlobalUIContainer _globalUI;
 
     private LevelContext _context;
     private LevelFactory _levelFactory;
@@ -13,13 +16,13 @@ public class LevelOrchestrator : IDisposable
     private LevelEntityEventMatcher _levelEntityEventMatcher;
     private LevelEventHandler _levelEventHandler;
     private SceneGC _sceneGC;
-    
     private SceneContainer _sceneContainer;
 
-    public LevelOrchestrator(GameStateMachine gameStateMachine, ICoroutineExecutor coroutineExecutor)
+    public LevelOrchestrator(GameStateMachine gameStateMachine, CoroutineExecutor coroutineExecutor, GlobalUIContainer globalUI)
     {
         _gameStateMachine = gameStateMachine;
         _coroutineExecutor = coroutineExecutor;
+        _globalUI = globalUI;
     }
 
     private void InitSceneContainer()
@@ -32,14 +35,14 @@ public class LevelOrchestrator : IDisposable
     public void Run()
     {
         InitSceneContainer();
-
-
+        
+        
         _sceneGC = new SceneGC();
         _context = new LevelContext();
         _dispatcher = new LevelDispatcher();
         _rewardCoordinator = new RewardCoordinator();
         _levelFactory = new LevelFactory(_gameStateMachine, _context, _sceneGC);
-        _levelEntityEventMatcher = new LevelEntityEventMatcher(_context, _dispatcher, _rewardCoordinator);
+        _levelEntityEventMatcher = new LevelEntityEventMatcher(_context, _dispatcher, _rewardCoordinator, _globalUI);
         _levelEventHandler = new LevelEventHandler(_context, _rewardCoordinator, _coroutineExecutor, _dispatcher);
 
 
@@ -47,6 +50,7 @@ public class LevelOrchestrator : IDisposable
         _levelFactory.CreatePlayer(_sceneContainer.PlayerSpawnPoint.transform.position,3);
         _levelFactory.CreateUIContainer();
         _levelFactory.CreatePopupMaster();
+        
         
         _levelEntityEventMatcher.Run();
         _levelEventHandler.Run();

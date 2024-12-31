@@ -1,7 +1,5 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class PlayerInput : MonoBehaviour
 {
@@ -76,9 +74,9 @@ public class PlayerInput : MonoBehaviour
         _isAimUnActiveTriggered = true;
     }
 
-    public void Lock() => gameObject.SetActive(false);
+    public void Run() => gameObject.SetActive(true);
 
-    public void UnLock() => gameObject.SetActive(true);
+    public void Lock() => gameObject.SetActive(false);
 
     private Vector3 CalculateShootDirection()
     {

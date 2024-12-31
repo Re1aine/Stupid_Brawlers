@@ -76,8 +76,6 @@ public class PlayerView : MonoBehaviour
        _aimHelpLine.Hide();
        _scope.StopUpdatePosition();
     }
-
-    public void LockInput() => _input.Lock();
 }
 
 public enum AimMode

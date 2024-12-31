@@ -25,16 +25,23 @@ public class GameStateMachine
    
     public void Enter<TState>()
     {
-        _currentParameterizedState = null;
         _currentState?.Exit();
+        _currentParameterizedState?.Exit();
+        
+        _currentState = null;
+        _currentParameterizedState = null;
+        
         _currentState = _states[typeof(TState)] as IState;
         _currentState?.Enter();
     }
     
     public void Enter<TState>(string argument) where TState : IParameterizedState
     {
-        _currentState = null;
+        _currentState?.Exit();
         _currentParameterizedState?.Exit();
+        
+        _currentState = null;
+        _currentParameterizedState = null;
 
         if (!_states.TryGetValue(typeof(TState), out var state))
             throw new InvalidOperationException($"Состояние типа {typeof(TState)} не найдено.");
@@ -43,8 +50,6 @@ public class GameStateMachine
         _currentParameterizedState?.Enter(argument);
     }
     
-    
-
     public void Run()
     {
         Enter<InitState>();

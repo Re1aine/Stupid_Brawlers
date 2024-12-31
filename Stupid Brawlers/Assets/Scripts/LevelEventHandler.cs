@@ -26,15 +26,25 @@ public class LevelEventHandler : IDisposable
 
     public void Run()
     {
-        _levelDispatcher.OnEnemyDied += HandleOnEnemyDiedEvent;
+        _levelDispatcher.OnLevelStarted += HandleLevelStarted;
         _levelDispatcher.OnLevelCompleted += HandleOnLevelCompletedEvent;
+        _levelDispatcher.OnEnemyDied += HandleOnEnemyDiedEvent;
         _levelDispatcher.OnAllBulletsFinished += HandleAllBulletsFinished;
+    }
+
+    private void HandleLevelStarted()
+    {
+        _levelContext.Player.Input.Run();
+        
+        Debug.Log("<b><color=green> [LEVEL DISPATCHER] <color=green>" +
+                  "<color=red> LEVEL STARTED <color=red>");
     }
 
     public void Dispose()
     {
-        _levelDispatcher.OnEnemyDied -= HandleOnEnemyDiedEvent;
+        _levelDispatcher.OnLevelStarted -= HandleLevelStarted;
         _levelDispatcher.OnLevelCompleted -= HandleOnLevelCompletedEvent;
+        _levelDispatcher.OnEnemyDied -= HandleOnEnemyDiedEvent;
         _levelDispatcher.OnAllBulletsFinished -= HandleAllBulletsFinished;
     }
 
@@ -52,7 +62,7 @@ public class LevelEventHandler : IDisposable
 
     private IEnumerator HandleDelayedOnLevelCompletedEvent()
     {
-        _levelContext.Player.LockInput();
+        _levelContext.Player.Input.Lock();
         
         yield return new WaitForSeconds(_delayLevelCompletedEvent);
         
