@@ -1,21 +1,16 @@
 using System;
-using Spine;
 using Spine.Unity;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerView : MonoBehaviour
 {
-    private const string TargetPoint = "aimt-target-IK";
     public Player Player => _player;
     public GunView GunView => _gunView;
     public PlayerInput Input => _input;
-
-    [SerializeField] private SkeletonAnimation _skeletonAnimation;
-    [SerializeField] private GameObject _shootPoint;
-    private IkConstraint _targetConstraint;
-    private Camera _camera;
-    private Bone _targetBone;
     
+    [SerializeField] private SkeletonUtilityBone _aimTargetBone;
+    [SerializeField] private SkeletonUtility _skeletonUtility;
     
     [SerializeField] private PlayerInput _input;
     [SerializeField] private GunView _gunView;
@@ -36,34 +31,31 @@ public class PlayerView : MonoBehaviour
 
     private void Awake()
     {
+        _aimHelpLine.SetStartPoint(_gunView.GetShootPoint());
         TurnOffAim();
-        _camera = Camera.main;
-        _targetConstraint = _skeletonAnimation.Skeleton.IkConstraints.Find(c => c.ToString() == TargetPoint);
-        _targetBone = _targetConstraint.Target;
-        
     }
 
     private void Update()
     {
-        Vector3 mousePosition = new Vector3(
-            _camera.ScreenToWorldPoint(UnityEngine.Input.mousePosition).x,
-            _camera.ScreenToWorldPoint(UnityEngine.Input.mousePosition).y,
-            0 );
+        _aimTargetBone.transform.position = _scope.transform.position;
         
-        Vector3 direction = (mousePosition - _shootPoint.transform.position).normalized;
         
-//        Vector2 originalPosition = new Vector2(_targetBone.X, _targetBone.Y);
-//
-//// Переводим мировую позицию мыши в локальные координаты
-//        var skeletonSpacePoint = _skeletonAnimation.transform.InverseTransformPoint(mousePosition);
-//
-//// Сохраняем относительное смещение
-//        skeletonSpacePoint.x += originalPosition.x;
-//        skeletonSpacePoint.y += originalPosition.y;
-//
-//// Устанавливаем позицию кости
-//        _targetBone.SetLocalPosition(skeletonSpacePoint);
+        FlipPlayer();
+
+        if (_aimHelpLine.gameObject.activeSelf)
+        {
+            if((_gunView.GetShootPoint()- _aimHelpLine.GetStartPoint()).sqrMagnitude < Mathf.Epsilon) return; 
         
+            _aimHelpLine.SetStartPoint(_gunView.GetShootPoint());
+        }
+    }
+
+    private void FlipPlayer()
+    {
+        if(_scope.transform.position.x > _skeletonUtility.transform.position.x)
+            _skeletonUtility.Skeleton.ScaleX = 1;
+        else
+            _skeletonUtility.Skeleton.ScaleX = -1;
     }
 
     private void SetAimMode(AimMode mode)

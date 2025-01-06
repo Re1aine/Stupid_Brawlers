@@ -21,7 +21,7 @@ public class GunView : MonoBehaviour
     {
         _levelFactory = levelFactory;
     }
-
+    
     public void SetBulletCount(int value)
     {
         _bulletCount.SetValue(value);

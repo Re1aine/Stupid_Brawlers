@@ -5,10 +5,10 @@ using UnityEngine;
 [RequireComponent(typeof(LineRenderer))]
 public class AimHelper : MonoBehaviour
 {
+    [SerializeField] private LineRenderer _line;
     [SerializeField] private Transform _shootPoint;
     [SerializeField] private float SpeedAnim;
-    
-    private LineRenderer _line;
+
     private Camera _camera;
 
     private Color _showColor;
@@ -16,7 +16,6 @@ public class AimHelper : MonoBehaviour
     
     private void Awake()
     {
-        _line = GetComponent<LineRenderer>();
         _camera = Camera.main;
         
         _showColor = new Color(_line.material.color.r, _line.material.color.g, _line.material.color.b, 1);
@@ -25,13 +24,13 @@ public class AimHelper : MonoBehaviour
         _line.material.color = _hideColor;
     }
     
-    private void Start()
+    
+    public void SetStartPoint(Vector3 point)
     {
-        _line.SetPosition(0, new Vector3(
-            _shootPoint.position.x,
-            _shootPoint.position.y,
-            0));
+        _line.SetPosition(0, new Vector3(point.x, point.y, 0));
     }
+
+    public Vector3 GetStartPoint() => _line.GetPosition(0);
 
     private void Update()
     {
