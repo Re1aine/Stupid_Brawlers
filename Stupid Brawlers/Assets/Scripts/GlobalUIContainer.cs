@@ -13,6 +13,11 @@ public class GlobalUIContainer : MonoBehaviour
     public void Construct(ICoroutineExecutor coroutineExecutor) => 
         _coroutineExecutor = coroutineExecutor;
 
+    private void Awake()
+    {
+        _loadScreen.OnFaded += () => OnLoadScreenHidden?.Invoke();
+    }
+
     public void ShowLoadScreen() => _loadScreen.Show();
 
     public void HideLoadScreen()
@@ -25,7 +30,5 @@ public class GlobalUIContainer : MonoBehaviour
         yield return new WaitForSeconds(1f);
         
         _loadScreen.Hide();
-        
-        OnLoadScreenHidden?.Invoke();
     }
 }

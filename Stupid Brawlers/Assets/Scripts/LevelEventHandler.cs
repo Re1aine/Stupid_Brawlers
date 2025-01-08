@@ -41,10 +41,15 @@ public class LevelEventHandler : IDisposable
 
     private void HandleLevelStarted()
     {
+        _levelInformer.SetHighScore(_levelSaveLoadMaster.GetValue(_levelInformer.GetLvlKey(), 0));
+
+        _levelContext.UI.InformMenu.SetHighScore(_levelInformer.GetHighScore());
+        
+        _levelContext.UI.InformMenu.ClosePauseMenu(1);
+
         _levelContext.Player.Input.Run();
 
-        _levelInformer.SetHighScore(_levelSaveLoadMaster.GetValue(_levelInformer.GetLvlKey(), 0));
-        
+
         Debug.Log("<b><color=green> [LEVEL DISPATCHER] <color=green>" +
                   "<color=red> LEVEL PROGRESS LOADED <color=red>");
         

@@ -6,6 +6,7 @@ public class UIContainer : MonoBehaviour
 {
     public BulletField BulletField => _bulletField;
     public LvlCompleteWindow LvlCompleteWindow => _completeWindow;
+    public InformMenu InformMenu => _informMenu;
     
     [SerializeField] private BulletField _bulletField;
     [SerializeField] private LvlCompleteWindow _completeWindow;
@@ -13,6 +14,7 @@ public class UIContainer : MonoBehaviour
     [SerializeField] private Transform _parentResultsWindow;
     [SerializeField] private Button _menuButton;
     [SerializeField] private Button _retryButton;
+    [SerializeField] private InformMenu _informMenu;
     
     [SerializeField] private GameObject _bulletFinishedScreen;
     
@@ -25,7 +27,8 @@ public class UIContainer : MonoBehaviour
     {
         _completeWindow.Construct(_gameStateMachine);
 
-        _menuButton.onClick.AddListener(() => _gameStateMachine.Enter<LoadMenuState>());
+        _menuButton.onClick.AddListener(() => _informMenu.OpenPauseMenu());
+        //_menuButton.onClick.AddListener(() => _gameStateMachine.Enter<LoadMenuState>());
         _retryButton.onClick.AddListener(() => _gameStateMachine.Enter<LoadLevelState>(SceneNavigator.GetCurrentLvlName()));
         
     }
