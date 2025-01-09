@@ -6,8 +6,9 @@ using UnityEngine;
 public class AimHelper : MonoBehaviour
 {
     [SerializeField] private LineRenderer _line;
-    [SerializeField] private Transform _shootPoint;
     [SerializeField] private float SpeedAnim;
+    
+    private Vector3 _shootPoint;
 
     private Camera _camera;
 
@@ -28,6 +29,12 @@ public class AimHelper : MonoBehaviour
     public void SetStartPoint(Vector3 point)
     {
         _line.SetPosition(0, new Vector3(point.x, point.y, 0));
+        _shootPoint = point;
+    }
+
+    public void SetEndPoint(Vector3 point)
+    {
+        _line.SetPosition(1, new Vector3(point.x, point.y, 0));
     }
 
     public Vector3 GetStartPoint() => _line.GetPosition(0);
@@ -37,9 +44,9 @@ public class AimHelper : MonoBehaviour
         Vector3 mouseWorldPosition = _camera.ScreenToWorldPoint(Input.mousePosition);
         mouseWorldPosition.z = 0;
         
-        Vector2 direction = (mouseWorldPosition - _shootPoint.position).normalized;
+        Vector2 direction = (mouseWorldPosition - _shootPoint).normalized;
         
-        RaycastHit2D hit = Physics2D.Raycast(_shootPoint.position, direction, Mathf.Infinity, LayerMask.GetMask("Default"));
+        RaycastHit2D hit = Physics2D.Raycast(_shootPoint, direction, Mathf.Infinity, LayerMask.GetMask("Default"));
         
         if (hit.collider != null)
             _line.SetPosition(1, hit.point);
@@ -52,7 +59,6 @@ public class AimHelper : MonoBehaviour
                     0));
         }
     }
-    
     
     [ContextMenu("Hide")]
     public void Hide()
