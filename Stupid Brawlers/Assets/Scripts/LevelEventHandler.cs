@@ -41,19 +41,16 @@ public class LevelEventHandler : IDisposable
 
     private void HandleLevelStarted()
     {
-        _levelInformer.SetHighScore(_levelSaveLoadMaster.GetValue(_levelInformer.GetLvlKey(), 0));
-
-        _levelContext.UI.InformMenu.SetHighScore(_levelInformer.GetHighScore());
+        _levelInformer.SetLevelData(_levelSaveLoadMaster.GetValue(_levelInformer.GetLvlKeyId(), new LevelData()));
+        
+        _levelContext.UI.InformMenu.SetHighScore(_levelInformer.LevelData.GetHighScore());
         
         _levelContext.UI.InformMenu.ClosePauseMenu(1);
 
         _levelContext.Player.Input.Run();
-
-
+        
         Debug.Log("<b><color=green> [LEVEL DISPATCHER] <color=green>" +
                   "<color=red> LEVEL PROGRESS LOADED <color=red>");
-        
-        Debug.Log("HIGHSCORE ON LEVEL - " + _levelSaveLoadMaster.GetValue(_levelInformer.GetLvlKey(), 0));
         
         Debug.Log("<b><color=green> [LEVEL DISPATCHER] <color=green>" +
                   "<color=red> LEVEL STARTED <color=red>");
@@ -90,13 +87,18 @@ public class LevelEventHandler : IDisposable
 
     private void HandleOnLevelCompletedEvent()
     {
-        if (_levelInformer.GetHighScore() < _rewardCoordinator.GetAllRewardValue()) 
-            _levelSaveLoadMaster.SetValue(_levelInformer.GetLvlKey(), _rewardCoordinator.GetAllRewardValue());
+       var data = _levelInformer.LevelData;
+       data.SetLevelState(LevelState.Completed);
 
+       if (_levelInformer.LevelData.GetHighScore() < _rewardCoordinator.GetAllRewardValue()) 
+           data.SetHighScore(_rewardCoordinator.GetAllRewardValue());
+       
+       _levelSaveLoadMaster.SetValue(_levelInformer.GetLvlKeyId(), data);
+                
         foreach (var shootedBullet in _levelContext.ShootedBullets)
             if (shootedBullet != null)
                 shootedBullet.FreezeMove();
-
+        
         Debug.Log("<b><color=green> [LEVEL DISPATCHER] <color=green>" +
                   "<color=red> LEVEL PROGRESS SAVED <color=red>");
             

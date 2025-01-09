@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class LevelSaveLoadMaster
 {
-    public void SetValue(string key, int value) => 
-        PlayerPrefs.SetInt(key, value);
+    public void SetValue<T>(string key, T value) => 
+        PlayerPrefs.SetString(key, JsonUtility.ToJson(value));
 
-    public int GetValue(string key, int defaultValue) => 
-        PlayerPrefs.HasKey(key) ? PlayerPrefs.GetInt(key) : defaultValue;
+    public T GetValue<T>(string key, T defaultValue) => 
+        PlayerPrefs.HasKey(key) ? JsonUtility.FromJson<T>(PlayerPrefs.GetString(key)) : defaultValue;
 
     public void Save()
     {
@@ -21,3 +21,4 @@ public class LevelSaveLoadMaster
         Debug.Log("PlayerPrefs cleared!");
     }
 }
+

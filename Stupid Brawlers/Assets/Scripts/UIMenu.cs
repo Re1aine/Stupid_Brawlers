@@ -31,15 +31,16 @@ public class UIMenu : MonoBehaviour
         foreach (Transform child in _content)
             if (child.GetComponent<LvlSlotView>() != null)
                 length += 1;
-                
         
         _lvlSlots = new List<LvlSlotView>(length);
 
         foreach (Transform child in _content) 
             _lvlSlots.Add(child.GetComponent<LvlSlotView>());
         
-        foreach (LvlSlotView lvlSlot in _lvlSlots) 
-            lvlSlot.Construct(_gameStateMachine);
+        foreach (LvlSlotView slot in _lvlSlots) 
+            slot.Construct(_gameStateMachine);
+
+        _lvlSlots[0].UnlockSlot();
     }
 }
 
