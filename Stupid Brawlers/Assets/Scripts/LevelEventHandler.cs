@@ -41,7 +41,7 @@ public class LevelEventHandler : IDisposable
 
     private void HandleLevelStarted()
     {
-        _levelInformer.SetLevelData(_levelSaveLoadMaster.GetValue(_levelInformer.GetLvlKeyId(), new LevelData()));
+        _levelInformer.SetLevelData(_levelSaveLoadMaster.GetValue(_levelInformer.GetLevelKey(), new LevelData()));
         
         _levelContext.UI.InformMenu.SetHighScore(_levelInformer.LevelData.GetHighScore());
         
@@ -93,7 +93,7 @@ public class LevelEventHandler : IDisposable
        if (_levelInformer.LevelData.GetHighScore() < _rewardCoordinator.GetAllRewardValue()) 
            data.SetHighScore(_rewardCoordinator.GetAllRewardValue());
        
-       _levelSaveLoadMaster.SetValue(_levelInformer.GetLvlKeyId(), data);
+       _levelSaveLoadMaster.SetValue(_levelInformer.GetLevelKey(), data);
                 
         foreach (var shootedBullet in _levelContext.ShootedBullets)
             if (shootedBullet != null)

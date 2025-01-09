@@ -19,14 +19,6 @@ public static class SceneNavigator
 
     public static GameScene GetCurrentGameScene() => 
         SceneManager.GetActiveScene().buildIndex == BootstrapSceneBuildIndex ? GameScene.Bootstrap : GameScene.Menu;
-
-    public static LevelId GetCurrentLevelId()
-    {
-        int levelId = GetLvlSceneIndex() + 1;
-        return Enum.GetValues(typeof(LevelId))
-            .Cast<LevelId>()
-            .FirstOrDefault(id => (int)id == levelId);
-    }
     
     public static string GetNextLvlScene()
     {

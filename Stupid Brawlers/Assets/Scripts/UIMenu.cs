@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,6 +11,7 @@ public class UIMenu : MonoBehaviour
     private List<LvlSlotView> _lvlSlots;
 
     private GameStateMachine _gameStateMachine;
+    private LevelSaveLoadMaster _levelSaveLoadMaster = new();
     
     public void Construct(GameStateMachine gameStateMachine)
     {
@@ -39,7 +41,17 @@ public class UIMenu : MonoBehaviour
         
         foreach (LvlSlotView slot in _lvlSlots) 
             slot.Construct(_gameStateMachine);
-
+        
+        for (int i = 1; i < _lvlSlots.Count; i++)
+        {
+            var lvlSaveKey = SceneNavigator.GetLvlSceneNameByIndex(i);
+            
+            var data = _levelSaveLoadMaster.GetValue(lvlSaveKey, new LevelData());
+            
+            if(data.GetLevelState() == LevelState.Completed)
+                _lvlSlots[i].UnlockSlot();
+        }
+        
         _lvlSlots[0].UnlockSlot();
     }
 }

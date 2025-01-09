@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using UnityEngine;
 
 public class LevelInformer
 {
@@ -7,13 +5,12 @@ public class LevelInformer
     
     private LevelData _levelData;
     
-    private readonly LevelId _id;
-
-    public LevelInformer() => _id = GetLvlId();
+    private string _levelKey;
     
     public void SetLevelData(LevelData levelData) => _levelData = levelData;
-    public string GetLvlKeyId() => _id.ToString();
-    private LevelId GetLvlId() => SceneNavigator.GetCurrentLevelId();
+   
+    public string GetLevelKey() => SceneNavigator.GetCurrentLvlName();
+
 }
 
 public enum LevelState
