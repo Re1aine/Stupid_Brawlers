@@ -22,6 +22,8 @@ public class RewardCoordinator : IDisposable
                   "<color=yellow> REWARD ASSIGNED FOR ENEMY - [" + 
                   enemy.GetRewardValue() + "] <color=yellow>");
     }
-    
+
+    public int GetAllRewardValue() => _pointsCounter.ReceivePoints.Value;
+
     public void Dispose() => _pointsCounter.ReceivePoints.OnValueChanged -= RewardAssigned;
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Numerics;
 using Object = UnityEngine.Object;
 
 public class LevelOrchestrator : IDisposable
@@ -15,6 +16,8 @@ public class LevelOrchestrator : IDisposable
     private LevelEventHandler _levelEventHandler;
     private SceneGC _sceneGC;
     private SceneContainer _sceneContainer;
+    private LevelSaveLoadMaster _levelSaveLoadMaster;
+    private LevelInformer _levelInformer;
 
     public LevelOrchestrator(GameStateMachine gameStateMachine, CoroutineExecutor coroutineExecutor, GlobalUIContainer globalUI)
     {
@@ -34,6 +37,8 @@ public class LevelOrchestrator : IDisposable
     {
         InitSceneContainer();
         
+        _levelInformer = new LevelInformer();
+        _levelSaveLoadMaster = new LevelSaveLoadMaster();
         
         _sceneGC = new SceneGC();
         _context = new LevelContext();
@@ -41,7 +46,7 @@ public class LevelOrchestrator : IDisposable
         _rewardCoordinator = new RewardCoordinator();
         _levelFactory = new LevelFactory(_gameStateMachine, _context, _sceneGC);
         _levelEntityEventMatcher = new LevelEntityEventMatcher(_context, _dispatcher, _rewardCoordinator, _globalUI);
-        _levelEventHandler = new LevelEventHandler(_context, _rewardCoordinator, _coroutineExecutor, _dispatcher);
+        _levelEventHandler = new LevelEventHandler(_context, _rewardCoordinator, _coroutineExecutor, _dispatcher, _levelInformer, _levelSaveLoadMaster);
 
 
         _sceneContainer.EnemySpawnPoints.ForEach(p => _levelFactory.CreateEnemy(p.transform.position));

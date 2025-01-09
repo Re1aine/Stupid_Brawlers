@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    private const int RewardValue = 500;
+    [SerializeField] private int _rewardValue;
     
     public event Action<Enemy> OnDied;
 
@@ -13,5 +13,5 @@ public class Enemy : MonoBehaviour
         OnDied?.Invoke(this);
     }
 
-    public int GetRewardValue() => RewardValue;
+    public int GetRewardValue() => _rewardValue;
 }

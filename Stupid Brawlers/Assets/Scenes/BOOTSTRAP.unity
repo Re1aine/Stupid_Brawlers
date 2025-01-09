@@ -129,7 +129,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2579313821435005281, guid: 7649d5930759b4241ad1114efd8fef30, type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 16777215
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 5824713053527134028, guid: 7649d5930759b4241ad1114efd8fef30, type: 3}
       propertyPath: m_Pivot.x
