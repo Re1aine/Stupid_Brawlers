@@ -8,9 +8,10 @@ public class AimHelper : MonoBehaviour
     [SerializeField] private LineRenderer _line;
     [SerializeField] private float SpeedAnim;
     
-    private Vector3 _shootPoint;
-
     private Camera _camera;
+
+    private Vector3 _shootPoint;
+    private AimHandleMode _aimHandleMode;
 
     private Color _showColor;
     private Color _hideColor;
@@ -39,26 +40,30 @@ public class AimHelper : MonoBehaviour
 
     public Vector3 GetStartPoint() => _line.GetPosition(0);
 
+    public void SetAimHandleMode(AimHandleMode mode) => _aimHandleMode = mode;
+
     private void Update()
-    {
-        Vector3 mouseWorldPosition = _camera.ScreenToWorldPoint(Input.mousePosition);
-        mouseWorldPosition.z = 0;
-        
-        Vector2 direction = (mouseWorldPosition - _shootPoint).normalized;
-        
-        RaycastHit2D hit = Physics2D.Raycast(_shootPoint, direction, Mathf.Infinity, LayerMask.GetMask("Default"));
-        
-        if (hit.collider != null)
-            _line.SetPosition(1, hit.point);
-        else
-        {
-            _line.SetPosition(1, 
-                new Vector3(
-                    _camera.ScreenToWorldPoint(Input.mousePosition).x,
-                    _camera.ScreenToWorldPoint(Input.mousePosition).y,
-                    0));
-        }
-    }
+     {
+         if(_aimHandleMode == AimHandleMode.MeleeRange) return;
+         
+         Vector3 mouseWorldPosition = _camera.ScreenToWorldPoint(Input.mousePosition);
+         mouseWorldPosition.z = 0;
+         
+         Vector2 direction = (mouseWorldPosition - _shootPoint).normalized;
+         
+         RaycastHit2D hit = Physics2D.Raycast(_shootPoint, direction, Mathf.Infinity, LayerMask.GetMask("Default"));
+         
+         if (hit.collider != null)
+             _line.SetPosition(1, hit.point);
+         else
+         {
+             _line.SetPosition(1, 
+                 new Vector3(
+                     _camera.ScreenToWorldPoint(Input.mousePosition).x,
+                     _camera.ScreenToWorldPoint(Input.mousePosition).y,
+                     0));
+         }
+     }
     
     [ContextMenu("Hide")]
     public void Hide()

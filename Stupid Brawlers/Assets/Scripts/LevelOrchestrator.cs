@@ -6,6 +6,7 @@ public class LevelOrchestrator : IDisposable
     private readonly GameStateMachine _gameStateMachine;
     private readonly CoroutineExecutor _coroutineExecutor;
     private readonly GlobalUIContainer _globalUI;
+    private readonly AudioService _audioService;
 
     private LevelContext _context;
     private LevelFactory _levelFactory;
@@ -18,11 +19,15 @@ public class LevelOrchestrator : IDisposable
     private LevelSaveLoadMaster _levelSaveLoadMaster;
     private LevelInformer _levelInformer;
 
-    public LevelOrchestrator(GameStateMachine gameStateMachine, CoroutineExecutor coroutineExecutor, GlobalUIContainer globalUI)
+    public LevelOrchestrator(GameStateMachine gameStateMachine,
+        CoroutineExecutor coroutineExecutor,
+        GlobalUIContainer globalUI,
+        AudioService audioService)
     {
         _gameStateMachine = gameStateMachine;
         _coroutineExecutor = coroutineExecutor;
         _globalUI = globalUI;
+        _audioService = audioService;
     }
 
     private void InitSceneContainer()
@@ -43,13 +48,13 @@ public class LevelOrchestrator : IDisposable
         _context = new LevelContext();
         _dispatcher = new LevelDispatcher();
         _rewardCoordinator = new RewardCoordinator();
-        _levelFactory = new LevelFactory(_gameStateMachine, _context, _sceneGC);
+        _levelFactory = new LevelFactory(_gameStateMachine, _context, _sceneGC, _audioService);
         _levelEntityEventMatcher = new LevelEntityEventMatcher(_context, _dispatcher, _rewardCoordinator, _globalUI);
         _levelEventHandler = new LevelEventHandler(_context, _rewardCoordinator, _coroutineExecutor, _dispatcher, _levelInformer, _levelSaveLoadMaster);
 
 
         _sceneContainer.EnemySpawnPoints.ForEach(p => _levelFactory.CreateEnemy(p.transform.position));
-        _levelFactory.CreatePlayer(_sceneContainer.PlayerSpawnPoint.transform.position,3);
+        _levelFactory.CreatePlayer(_sceneContainer.PlayerSpawnPoint.transform.position,1000);
         _levelFactory.CreateUIContainer();
         _levelFactory.CreatePopupMaster();
         

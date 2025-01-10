@@ -5,12 +5,14 @@ public class LevelFactory
     private readonly GameStateMachine _gameStateMachine;
     private readonly LevelContext _levelContext;
     private readonly SceneGC _sceneGC;
+    private readonly AudioService _audioService;
 
-    public LevelFactory(GameStateMachine gameStateMachine, LevelContext levelContext, SceneGC sceneGC)
+    public LevelFactory(GameStateMachine gameStateMachine, LevelContext levelContext, SceneGC sceneGC, AudioService audioService)
     {
         _gameStateMachine = gameStateMachine;
         _levelContext = levelContext;
         _sceneGC = sceneGC;
+        _audioService = audioService;
     }
     
     public PlayerView CreatePlayer(Vector3 position, int bulletCount)
@@ -23,7 +25,7 @@ public class LevelFactory
         
         playerView.Construct(player);
         
-        playerView.GunView.Construct(this);
+        playerView.GunView.Construct(this, _audioService);
         playerView.GunView.SetBulletCount(bulletCount);
         
         return playerView;
@@ -44,6 +46,8 @@ public class LevelFactory
         var bullet = AssetProvider.InstantiateAt<Bullet>(AssetDataPath.BulletPrefab, position);
         bullet.SetMoveDirection(direction);
         bullet.RotateToDirection(direction);
+
+        bullet.Construct(_audioService);
         
         _levelContext.AddShootedBullet(bullet);
         _sceneGC.AddEntity(bullet);

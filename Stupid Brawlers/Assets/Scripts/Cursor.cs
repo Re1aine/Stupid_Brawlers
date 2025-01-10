@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Cursor : MonoBehaviour
@@ -9,6 +7,8 @@ public class Cursor : MonoBehaviour
     
     private SpriteRenderer _spriteRenderer;
     private Camera _camera;
+
+    private AimHandleMode _aimHandleMode;
     
     private Color _showColor;
     private Color _hideColor;
@@ -26,6 +26,17 @@ public class Cursor : MonoBehaviour
         _isUpdatePos = true;
     }
 
+    private void Update()
+    {
+        if(!_isUpdatePos) return;
+        if(_aimHandleMode == AimHandleMode.MeleeRange) return;
+        
+        transform.position = new Vector3(
+            _camera.ScreenToWorldPoint(Input.mousePosition).x,
+            _camera.ScreenToWorldPoint(Input.mousePosition).y,
+            0);
+    }
+
     public void StopUpdatePosition()
     {
         _isUpdatePos = false;
@@ -35,16 +46,8 @@ public class Cursor : MonoBehaviour
     {
         _isUpdatePos = true;
     }
-    
-    private void Update()
-    {
-        if(!_isUpdatePos) return;
-        
-        transform.position = new Vector3(
-            _camera.ScreenToWorldPoint(Input.mousePosition).x,
-            _camera.ScreenToWorldPoint(Input.mousePosition).y,
-            0);
-    }
+
+    public void SetAimHandleMode(AimHandleMode mode) => _aimHandleMode = mode;
 
     [ContextMenu("Hide")]
     public void Hide()

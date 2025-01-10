@@ -1,6 +1,5 @@
 using System;
 using Spine.Unity;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerView : MonoBehaviour
@@ -17,6 +16,12 @@ public class PlayerView : MonoBehaviour
     [SerializeField] private AimHelper _aimHelpLine;
     [SerializeField] private Cursor _scope;
 
+    [SerializeField] private Transform _view;
+    [SerializeField] private float _minDistance;
+    [SerializeField] private CapsuleCollider2D _collider;
+
+    private AimHandleMode _aimHandleMode;
+    
     private Player _player;
 
     public void Construct(Player player)
@@ -37,19 +42,33 @@ public class PlayerView : MonoBehaviour
 
     private void Update()
     {
+        _scope.transform.position = _input.GetMousePosition();
+
+        if ((_scope.transform.position - _view.transform.position).sqrMagnitude < _minDistance * _minDistance)
+        {
+            _scope.transform.position = _view.transform.position + _input.GetShootDirection() * _minDistance;
+            _aimHelpLine.SetEndPoint(_scope.transform.position);
+            
+            _aimHelpLine.SetAimHandleMode(AimHandleMode.MeleeRange);
+            _scope.SetAimHandleMode(AimHandleMode.MeleeRange);
+        }
+        else
+        {
+            _aimHelpLine.SetAimHandleMode(AimHandleMode.LongRange);
+            _scope.SetAimHandleMode(AimHandleMode.LongRange);
+        }
+
         _aimTargetBone.transform.position = _scope.transform.position;
-        
         
         FlipPlayer();
 
         if (_aimHelpLine.gameObject.activeSelf)
         {
-            if((_gunView.GetShootPoint()- _aimHelpLine.GetStartPoint()).sqrMagnitude < Mathf.Epsilon) return; 
-        
+            if((_gunView.GetShootPoint() - _aimHelpLine.GetStartPoint()).sqrMagnitude < Mathf.Epsilon) return; 
             _aimHelpLine.SetStartPoint(_gunView.GetShootPoint());
         }
     }
-
+    
     private void FlipPlayer()
     {
         if(_scope.transform.position.x > _skeletonUtility.transform.position.x)
@@ -112,4 +131,10 @@ public enum AimMode
     FullAimActive = 0,
     FullAimUnActive = 1,
     OnlyScopeActive = 2,
+}
+
+public enum AimHandleMode
+{
+    LongRange = 0,
+    MeleeRange = 1,
 }

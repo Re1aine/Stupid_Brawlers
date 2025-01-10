@@ -8,6 +8,7 @@ public class LoadLevelState : IParameterizedState
     private readonly LoadSceneMaster _loadSceneMaster;
     private readonly CoroutineExecutor _coroutineExecutor;
     private readonly GlobalUIContainer _globalUI;
+    private readonly AudioService _audioService;
 
     private LoadScreen _loadScreen;
     
@@ -15,13 +16,14 @@ public class LoadLevelState : IParameterizedState
 
     public LoadLevelState(GameStateMachine gameStateMachine,
         GameFactory gameFactory,
-        LoadSceneMaster loadSceneMaster, CoroutineExecutor coroutineExecutor, GlobalUIContainer globalUI)
+        LoadSceneMaster loadSceneMaster, CoroutineExecutor coroutineExecutor, GlobalUIContainer globalUI, AudioService audioService)
     {
         _gameStateMachine = gameStateMachine;
         _gameFactory = gameFactory;
         _loadSceneMaster = loadSceneMaster;
         _coroutineExecutor = coroutineExecutor;
         _globalUI = globalUI;
+        _audioService = audioService;
     }
     
     public void Enter(string sceneName)
@@ -32,7 +34,7 @@ public class LoadLevelState : IParameterizedState
 
     private void OnLoad()
     {
-        _levelOrchestrator = new LevelOrchestrator(_gameStateMachine, _coroutineExecutor, _globalUI);
+        _levelOrchestrator = new LevelOrchestrator(_gameStateMachine, _coroutineExecutor, _globalUI, _audioService);
         _levelOrchestrator.Run();
             
         _globalUI.HideLoadScreen();

@@ -5,21 +5,24 @@ public class GunView : MonoBehaviour
 {
     public event Action OnShoot; 
     public event Action OnAllBulletsFinished;
-
+    
     public ReadOnlyReactiveProperty<int> BulletCount => new(_bulletCount);
     private readonly ReactiveProperty<int> _bulletCount = new();
     
     [SerializeField] private Transform _shootPoint;
     [SerializeField, Range(0f, 1.5f)] private float _delayRecharge;
+    [SerializeField] private AudioClip _shootSound;
 
     private LevelFactory _levelFactory;
     
     private Vector3 _shootDirection;
     private float _timeRemainToShoot;
+    private AudioService _audioService;
 
-    public void Construct(LevelFactory levelFactory)
+    public void Construct(LevelFactory levelFactory, AudioService audioService)
     {
         _levelFactory = levelFactory;
+        _audioService = audioService;
     }
     
     public void SetBulletCount(int value)
@@ -44,6 +47,8 @@ public class GunView : MonoBehaviour
         SetBulletCount(_bulletCount.Value - 1);
         
         _timeRemainToShoot = _delayRecharge;
+        
+        _audioService.PlayShortSound(_shootSound);
         
         OnShoot?.Invoke();
     }

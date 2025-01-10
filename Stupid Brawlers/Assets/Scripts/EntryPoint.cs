@@ -8,8 +8,7 @@ public class EntryPoint : MonoBehaviour
     private CoroutineExecutor _coroutineExecutor;
     private LoadSceneMaster _loadSceneMaster;
     private GlobalUIContainer _globalUI;
-
-    [SerializeField] private GameObject _gameObject;
+    private AudioService _audioService;
     
     private void Awake()
     {
@@ -18,11 +17,13 @@ public class EntryPoint : MonoBehaviour
         _globalUI = GetComponentInChildren<GlobalUIContainer>();
         _globalUI.Construct(_coroutineExecutor);
         
-        _gameFactory = new GameFactory();
+        _gameFactory = new GameFactory(transform);
         
         _loadSceneMaster = new LoadSceneMaster(_coroutineExecutor);
         
-        _gameStateFactory = new GameStateFactory(_gameFactory, _loadSceneMaster, _coroutineExecutor, _globalUI);
+        _audioService = new AudioService(_gameFactory);
+
+        _gameStateFactory = new GameStateFactory(_gameFactory, _loadSceneMaster, _coroutineExecutor, _globalUI, _audioService);
         
         _gameStateMachine = new GameStateMachine(_gameStateFactory);
         

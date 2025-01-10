@@ -7,4 +7,5 @@ public static class AssetDataPath
     public const string PopupMaster = "PopupMaster";
     public const string BulletPrefab = "Bullet";
     public const string Popup = "Popup";
+    public const string AudioPlayer = "AudioPlayer";
 }

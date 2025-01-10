@@ -12,10 +12,12 @@ public class UIMenu : MonoBehaviour
 
     private GameStateMachine _gameStateMachine;
     private LevelSaveLoadMaster _levelSaveLoadMaster = new();
-    
-    public void Construct(GameStateMachine gameStateMachine)
+    private AudioService _audioService;
+
+    public void Construct(GameStateMachine gameStateMachine, AudioService audioService)
     {
         _gameStateMachine = gameStateMachine;
+        _audioService = audioService;
         
         CreateLvlSlotView();
     }

@@ -36,13 +36,9 @@ public class PlayerInput : MonoBehaviour
     {
         _isAimUnActiveTriggered = false;
         if (IsPlaceShootable())
-        { 
             OnEnterAimMode?.Invoke(AimMode.FullAimActive);
-        }
         else
-        {
             OnEnterAimMode?.Invoke(AimMode.FullAimUnActive);
-        }
     }
 
     private void HandleMouseHold()
@@ -64,7 +60,7 @@ public class PlayerInput : MonoBehaviour
     {
         if (IsPlaceShootable())
         {
-            var shootDirection = CalculateShootDirection();
+            var shootDirection = GetShootDirection();
             OnUpdateShootDirection?.Invoke(shootDirection);
             OnPlayerWantsToShoot?.Invoke();
 
@@ -78,20 +74,15 @@ public class PlayerInput : MonoBehaviour
 
     public void Lock() => gameObject.SetActive(false);
 
-    private Vector3 CalculateShootDirection()
+    public Vector3 GetShootDirection()
     {
-        Vector3 mousePosition = new Vector3(
-            _camera.ScreenToWorldPoint(Input.mousePosition).x,
-            _camera.ScreenToWorldPoint(Input.mousePosition).y,
-            0 );
-        
+        Vector3 mousePosition = GetMousePosition();
         return (mousePosition - _shootPointPosition).normalized;
     }
 
     private bool IsPlaceShootable()
     {
-        var mousePos = _camera.ScreenToWorldPoint(Input.mousePosition);
-        mousePos.z = 0;
+        var mousePos = GetMousePosition();
         
         RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
 
@@ -99,5 +90,13 @@ public class PlayerInput : MonoBehaviour
             return false;
         
         return true;
+    }
+
+    public Vector3 GetMousePosition()
+    {
+        return new Vector3(
+            _camera.ScreenToWorldPoint(Input.mousePosition).x,
+            _camera.ScreenToWorldPoint(Input.mousePosition).y,
+            0 );
     }
 }
