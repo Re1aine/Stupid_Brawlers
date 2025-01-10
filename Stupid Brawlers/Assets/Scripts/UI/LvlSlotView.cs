@@ -1,9 +1,10 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class LvlSlotView : MonoBehaviour
 {
-    [SerializeField] private int _level;
+    private int _level;
     
     private GameStateMachine _gameStateMachine;
 
@@ -14,6 +15,7 @@ public class LvlSlotView : MonoBehaviour
     [SerializeField] private Image _backgroundBox;
     [SerializeField] private Sprite _lockedBackgroundBox;
     [SerializeField] private Sprite _unlockedBackgroundBox;
+    [SerializeField] private TextMeshProUGUI _levelIndex;
     
     private void Awake()
     {
@@ -48,6 +50,10 @@ public class LvlSlotView : MonoBehaviour
         string levelName = SceneNavigator.GetLvlSceneNameByIndex(_level);
         _gameStateMachine.Enter<LoadLevelState>(levelName);
     }
+
+    public void SetLevelIndex(int index) => _level = index;
+
+    public void SetLevelText(int index) => _levelIndex.text = index.ToString();
 }
 
 public enum LevelSlotState

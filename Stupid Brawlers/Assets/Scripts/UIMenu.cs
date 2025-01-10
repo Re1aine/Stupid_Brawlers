@@ -11,7 +11,7 @@ public class UIMenu : MonoBehaviour
     private List<LvlSlotView> _lvlSlots;
 
     private GameStateMachine _gameStateMachine;
-    private LevelSaveLoadMaster _levelSaveLoadMaster = new();
+    private readonly LevelSaveLoadMaster _levelSaveLoadMaster = new();
     private AudioService _audioService;
 
     public void Construct(GameStateMachine gameStateMachine, AudioService audioService)
@@ -46,10 +46,14 @@ public class UIMenu : MonoBehaviour
         
         for (int i = 1; i < _lvlSlots.Count; i++)
         {
+            _lvlSlots[i].SetLevelIndex(i);
+            _lvlSlots[i].SetLevelText(i);
+            
             var lvlSaveKey = SceneNavigator.GetLvlSceneNameByIndex(i);
-            
+
             var data = _levelSaveLoadMaster.GetValue(lvlSaveKey, new LevelData());
-            
+
+
             if(data.GetLevelState() == LevelState.Completed)
                 _lvlSlots[i].UnlockSlot();
         }

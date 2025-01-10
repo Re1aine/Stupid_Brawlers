@@ -53,7 +53,7 @@ public class AimHelper : MonoBehaviour
          
          RaycastHit2D hit = Physics2D.Raycast(_shootPoint, direction, Mathf.Infinity, LayerMask.GetMask("Default"));
          
-         if (hit.collider != null)
+         if (hit.collider != null)      
              _line.SetPosition(1, hit.point);
          else
          {

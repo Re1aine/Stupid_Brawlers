@@ -270,8 +270,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5247e9d3c6a42ec9d1994f880ad113a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _level: 1
   _text: {fileID: 1366098963373456199}
   _backgroundBox: {fileID: 7945711364712749651}
   _lockedBackgroundBox: {fileID: 5783416599399022740, guid: 538e958fdb53341488e6c2c7f50047aa, type: 3}
   _unlockedBackgroundBox: {fileID: 2774136157585447902, guid: 538e958fdb53341488e6c2c7f50047aa, type: 3}
+  _levelIndex: {fileID: 5549023329938781717}

@@ -26,11 +26,10 @@ public class UIContainer : MonoBehaviour
     public void Run()
     {
         _completeWindow.Construct(_gameStateMachine);
-
-        _menuButton.onClick.AddListener(() => _informMenu.OpenPauseMenu());
-        //_menuButton.onClick.AddListener(() => _gameStateMachine.Enter<LoadMenuState>());
-        _retryButton.onClick.AddListener(() => _gameStateMachine.Enter<LoadLevelState>(SceneNavigator.GetCurrentLvlName()));
+        _informMenu.Construct(_gameStateMachine);    
         
+        _menuButton.onClick.AddListener(() => _informMenu.OpenPauseMenu());
+        _retryButton.onClick.AddListener(() => _gameStateMachine.Enter<LoadLevelState>(SceneNavigator.GetCurrentLvlName()));
     }
     
     public void SetRewardScore(int value)

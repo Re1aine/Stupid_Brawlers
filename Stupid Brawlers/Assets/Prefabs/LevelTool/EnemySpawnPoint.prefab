@@ -57,4 +57,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 846207815363436a95e68ba759093c11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sizeEnemyPrefab: {x: 0.65453124, y: 1.5318749, z: 1}
+  _sizeEnemyPrefab: {x: 1.410392, y: 2.136471, z: 1}
+  _offSetY: 1.010197

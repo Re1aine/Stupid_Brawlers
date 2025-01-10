@@ -22,6 +22,13 @@ public class InformMenu : MonoBehaviour
 
     [SerializeField] private float _speedAnim;
     
+    private GameStateMachine _gameStateMachine;
+
+    public void Construct(GameStateMachine gameStateMachine)
+    {
+        _gameStateMachine = gameStateMachine;
+    }
+    
     public void SetHighScore(int score)
     {
         if (score > 0)
@@ -33,7 +40,9 @@ public class InformMenu : MonoBehaviour
     private void Awake()
     {
         _continue.onClick.AddListener(() => ClosePauseMenu());
-    }
+        _restart.onClick.AddListener(() => _gameStateMachine.Enter<LoadLevelState>(SceneNavigator.GetCurrentLvlName()));
+        _toLevelMap.onClick.AddListener( () => _gameStateMachine.Enter<LoadMenuState>()); 
+    }    
     
     public void OpenPauseMenu()
     {
