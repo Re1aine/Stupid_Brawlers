@@ -42,7 +42,6 @@ public class PlayerView : MonoBehaviour
 
     private void Update()
     {
-        _scope.transform.position = _input.GetMousePosition();
 
         if ((_scope.transform.position - _view.transform.position).sqrMagnitude < _minDistance * _minDistance)
         {
@@ -50,14 +49,14 @@ public class PlayerView : MonoBehaviour
             _aimHelpLine.SetEndPoint(_scope.transform.position);
             
             _aimHelpLine.SetAimHandleMode(AimHandleMode.MeleeRange);
-            _scope.SetAimHandleMode(AimHandleMode.MeleeRange);
+            _scope.SetAimHandleMode(AimHandleMode.MeleeRange);                          
         }
         else
         {
             _aimHelpLine.SetAimHandleMode(AimHandleMode.LongRange);
             _scope.SetAimHandleMode(AimHandleMode.LongRange);
         }
-
+        
         _aimTargetBone.transform.position = _scope.transform.position;
         
         FlipPlayer();
