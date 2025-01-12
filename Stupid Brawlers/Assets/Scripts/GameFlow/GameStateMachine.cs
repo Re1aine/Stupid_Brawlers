@@ -54,7 +54,9 @@ public class GameStateMachine
     {
         Enter<InitState>();
     }
-    
+
+    public void RunToLaboratoryMode() => Enter<LoadLevelState>("Laboratory");
+
     public void Exit()
     {
       

@@ -10,7 +10,7 @@ public static class SceneNavigator
 
     private const string BootstrapSceneName = "BOOTSTRAP";
     private const string MenuSceneName = "MENU";
-
+    
     private static readonly int OverallSceneCount = SceneManager.sceneCountInBuildSettings;
     private static readonly int LevelSceneOffset = Enum.GetValues(typeof(GameScene)).Length;
 

@@ -1,6 +1,4 @@
 
-using UnityEngine;
-
 public class LoadLevelState : IParameterizedState
 {
     private readonly GameStateMachine _gameStateMachine;

@@ -53,6 +53,12 @@ TagManager:
   - name: UntouchZone
     uniqueID: 1594912823
     locked: 0
+  - name: Props
+    uniqueID: 2139914219
+    locked: 0
+  - name: Enemy
+    uniqueID: 1876390125
+    locked: 0
   m_RenderingLayers:
   - Default
   - UntouchZone

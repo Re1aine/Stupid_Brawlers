@@ -11,8 +11,11 @@ public class PlayerInput : MonoBehaviour
     
     private Vector3 _shootPointPosition;
     private bool _isAimUnActiveTriggered;
-    
-    private void Awake() => _camera = Camera.main;
+
+    public void SetCamera(Camera camera)
+    {
+        _camera = camera;
+    }
 
     public void SetShootPosition(Vector3 position) =>
         _shootPointPosition = position;
@@ -92,7 +95,7 @@ public class PlayerInput : MonoBehaviour
         return true;
     }
 
-    public Vector3 GetMousePosition()
+    private Vector3 GetMousePosition()
     {
         return new Vector3(
             _camera.ScreenToWorldPoint(Input.mousePosition).x,

@@ -63,6 +63,12 @@ public class Bullet : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.TryGetComponent(out Enemy enemy)) enemy.Die();          
+    }
+
+
     public void RotateToDirection(Vector3 direction)
     {
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;

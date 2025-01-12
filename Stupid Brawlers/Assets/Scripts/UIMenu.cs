@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -43,22 +44,32 @@ public class UIMenu : MonoBehaviour
         
         foreach (LvlSlotView slot in _lvlSlots) 
             slot.Construct(_gameStateMachine);
-        
-        for (int i = 1; i < _lvlSlots.Count; i++)
+
+
+        for (int i = 0; i < _lvlSlots.Count; i++)
         {
-            _lvlSlots[i].SetLevelIndex(i);
-            _lvlSlots[i].SetLevelText(i);
-            
-            var lvlSaveKey = SceneNavigator.GetLvlSceneNameByIndex(i);
-
+            _lvlSlots[i].SetLevelIndex(i + 1);
+            _lvlSlots[i].SetLevelText(i + 1);   
+        }
+        
+        for (int i = 0; i < _lvlSlots.Count; i++)
+        {
+            var lvlSaveKey = SceneNavigator.GetLvlSceneNameByIndex(i + 1);
+            Debug.Log($"lvlSaveKey: {lvlSaveKey}" + $"for {i}");
             var data = _levelSaveLoadMaster.GetValue(lvlSaveKey, new LevelData());
-
-
+            
             if(data.GetLevelState() == LevelState.Completed)
                 _lvlSlots[i].UnlockSlot();
         }
         
         _lvlSlots[0].UnlockSlot();
+    }
+    
+    [ContextMenu("UnlockAllSlots")]
+    public void UnlockAllSlots()
+    {
+        foreach (var s in _lvlSlots) 
+            s.UnlockSlot();
     }
 }
 

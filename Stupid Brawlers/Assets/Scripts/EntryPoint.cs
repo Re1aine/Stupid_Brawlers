@@ -30,6 +30,7 @@ public class EntryPoint : MonoBehaviour
         _gameFactory.SetGameStateMachine(_gameStateMachine);
         
         _gameStateMachine.Run();
+        //_gameStateMachine.RunToLaboratoryMode();
         
         DontDestroyOnLoad(this);
     }

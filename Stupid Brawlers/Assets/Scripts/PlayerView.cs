@@ -18,7 +18,6 @@ public class PlayerView : MonoBehaviour
 
     [SerializeField] private Transform _view;
     [SerializeField] private float _minDistance;
-    [SerializeField] private CapsuleCollider2D _collider;
 
     private AimHandleMode _aimHandleMode;
     
@@ -36,6 +35,7 @@ public class PlayerView : MonoBehaviour
 
     private void Awake()
     {
+        _input.SetCamera(Camera.main);
         _aimHelpLine.SetStartPoint(_gunView.GetShootPoint());
         TurnOffAim();
     }
