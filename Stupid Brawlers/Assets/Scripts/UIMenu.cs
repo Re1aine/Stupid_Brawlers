@@ -55,7 +55,6 @@ public class UIMenu : MonoBehaviour
         for (int i = 0; i < _lvlSlots.Count; i++)
         {
             var lvlSaveKey = SceneNavigator.GetLvlSceneNameByIndex(i + 1);
-            Debug.Log($"lvlSaveKey: {lvlSaveKey}" + $"for {i}");
             var data = _levelSaveLoadMaster.GetValue(lvlSaveKey, new LevelData());
             
             if(data.GetLevelState() == LevelState.Completed)
