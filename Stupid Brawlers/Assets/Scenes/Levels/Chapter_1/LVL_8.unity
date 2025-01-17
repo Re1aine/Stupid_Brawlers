@@ -259,6 +259,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 841471429}
     m_Modifications:
+    - target: {fileID: 408528063121352332, guid: f7442ad2b54d9ba428018a80e86eee68, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 408528063121352332, guid: f7442ad2b54d9ba428018a80e86eee68, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 3011447770120832386, guid: f7442ad2b54d9ba428018a80e86eee68, type: 3}
       propertyPath: m_Name
       value: Wheel
@@ -308,11 +316,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7442ad2b54d9ba428018a80e86eee68, type: 3}
---- !u!4 &388060239 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4967689259234956338, guid: f7442ad2b54d9ba428018a80e86eee68, type: 3}
-  m_PrefabInstance: {fileID: 388060238}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &452770330
 GameObject:
   m_ObjectHideFlags: 0
@@ -638,7 +641,7 @@ PrefabInstance:
       addedObject: {fileID: 228365895}
     - targetCorrespondingSourceObject: {fileID: 484862263036011459, guid: c3fd7deec8602b44a8e05f014f40cf02, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 388060239}
+      addedObject: {fileID: 2031107238}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3fd7deec8602b44a8e05f014f40cf02, type: 3}
 --- !u!4 &841471428 stripped
@@ -991,6 +994,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 3687683295094659560, guid: 30ebd137184e4fd489c2a3011b0b3c72, type: 3}
   m_PrefabInstance: {fileID: 1902804584}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2031107238 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 408528063121352332, guid: f7442ad2b54d9ba428018a80e86eee68, type: 3}
+  m_PrefabInstance: {fileID: 388060238}
   m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
