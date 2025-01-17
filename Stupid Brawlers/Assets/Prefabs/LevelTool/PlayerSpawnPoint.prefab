@@ -57,4 +57,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72def281abd84e9794dd012c98a5e932, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sizePlayerPrefab: {x: 0.65453124, y: 1.5318749, z: 1}
+  _sizePlayerPrefab: {x: 1.592325, y: 2.251268, z: 0}
+  _offsetY: 1.053208

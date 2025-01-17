@@ -1,0 +1,588 @@
+{
+    "skeleton": {
+        "hash": "Zj8prqjNk1y1FgCyPvWJUDn1u9s",
+        "spine": "4.2.22",
+        "x": -235.92,
+        "y": -38.45,
+        "width": 620.12,
+        "height": 1004.04,
+        "images": "./Textures/",
+        "audio": "C:/Users/79376/Desktop/DummyCharacter/\u0420\u045c\u0420\u0455\u0420\u0406\u0420\u00b0\u0421\u040f \u0420\u0457\u0420\u00b0\u0420\u0457\u0420\u0454\u0420\u00b0"
+    },
+    "bones": [
+        {
+            "name": "root",
+            "rotation": -0.02,
+            "x": -633.91,
+            "y": 860.93
+        },
+        {
+            "name": "hips",
+            "parent": "root",
+            "x": 489.52,
+            "y": -442.34
+        },
+        {
+            "name": "frong leg",
+            "parent": "hips",
+            "x": 101.85,
+            "y": -443.17
+        },
+        {
+            "name": "pelvis",
+            "parent": "frong leg",
+            "length": 186.7,
+            "rotation": -85.61,
+            "x": -106.28,
+            "y": 438.74
+        },
+        {
+            "name": "front leg",
+            "parent": "pelvis",
+            "length": 204.95,
+            "rotation": -19.78,
+            "x": 186.23,
+            "y": -6.63
+        },
+        {
+            "name": "front shoe",
+            "parent": "front leg",
+            "length": 133.2,
+            "rotation": 87.26,
+            "x": 214.09,
+            "y": 0.26
+        },
+        {
+            "name": "back leg",
+            "parent": "hips",
+            "length": 161.48,
+            "rotation": -69.29,
+            "x": 118.66,
+            "y": -7.53
+        },
+        {
+            "name": "back pelvis",
+            "parent": "back leg",
+            "length": 196.5,
+            "rotation": -14.25,
+            "x": 165.57,
+            "y": 0.42
+        },
+        {
+            "name": "back shoe",
+            "parent": "back pelvis",
+            "length": 62.14,
+            "rotation": 5.52,
+            "x": 196.71,
+            "y": 1.83
+        },
+        {
+            "name": "back shoe2",
+            "parent": "back shoe",
+            "length": 118.81,
+            "rotation": 70.9,
+            "x": 56.73,
+            "y": 1.15
+        },
+        {
+            "name": "torso",
+            "parent": "root",
+            "length": 195.45,
+            "rotation": 89.31,
+            "x": 552.07,
+            "y": -402.63,
+            "shearX": 0.71
+        },
+        {
+            "name": "neck",
+            "parent": "torso",
+            "length": 60.63,
+            "rotation": 0.69,
+            "x": 230.42,
+            "y": -1.69,
+            "scaleX": 1.3076
+        },
+        {
+            "name": "head",
+            "parent": "neck",
+            "length": 181.8,
+            "rotation": -0.95,
+            "x": 67.78,
+            "y": -0.75,
+            "scaleX": 0.6725
+        },
+        {
+            "name": "fron arm",
+            "parent": "torso",
+            "length": 151.23,
+            "rotation": 129.17,
+            "x": 215.76,
+            "y": 96.95
+        },
+        {
+            "name": "front forearm",
+            "parent": "fron arm",
+            "length": 123.54,
+            "rotation": 106.88,
+            "x": 159.88,
+            "y": -3.25
+        },
+        {
+            "name": "front wrist",
+            "parent": "front forearm",
+            "length": 125.68,
+            "rotation": -4.47,
+            "x": 160.42,
+            "y": -3.23,
+            "scaleX": 0.7927,
+            "scaleY": 0.7927
+        },
+        {
+            "name": "back arm",
+            "parent": "torso",
+            "length": 149.7,
+            "rotation": 132.48,
+            "x": 232.77,
+            "y": -62.17
+        },
+        {
+            "name": "back forearm",
+            "parent": "back arm",
+            "length": 126.76,
+            "rotation": 114.78,
+            "x": 153.57,
+            "y": -1.31,
+            "shearX": -0.01,
+            "color": "ff3f00ff"
+        },
+        {
+            "name": "back wrist",
+            "parent": "back forearm",
+            "length": 145.25,
+            "rotation": -13.93,
+            "x": 126.9,
+            "y": 0.15,
+            "scaleX": 0.7969,
+            "scaleY": 0.7878
+        },
+        {
+            "name": "aim-target-IK",
+            "parent": "root",
+            "x": 1209.07,
+            "y": -204.12,
+            "color": "ff3f00ff"
+        },
+        {
+            "name": "ik3",
+            "parent": "aim-target-IK",
+            "rotation": 125.62,
+            "x": -354.86,
+            "y": 4.56,
+            "color": "ff3f00ff"
+        },
+        {
+            "name": "target2",
+            "parent": "ik3",
+            "rotation": 176.71,
+            "x": 54.24,
+            "y": 142.85,
+            "color": "ff3f00ff"
+        },
+        {
+            "name": "ik1",
+            "parent": "target2",
+            "rotation": -92.79,
+            "x": -134.94,
+            "y": -150.02,
+            "color": "ff3f00ff"
+        },
+        {
+            "name": "back-arm-IK3",
+            "parent": "aim-target-IK",
+            "x": -262.62,
+            "y": -10.69,
+            "color": "ff3f00ff"
+        },
+        {
+            "name": "back-arm-IK2",
+            "parent": "back-arm-IK3",
+            "x": -158.76,
+            "y": -50.7,
+            "color": "ff3f00ff"
+        },
+        {
+            "name": "back-arm-IK",
+            "parent": "back-arm-IK2",
+            "x": -139.15,
+            "y": 90.23,
+            "color": "ff3f00ff"
+        },
+        {
+            "name": "rotation-torso",
+            "parent": "hips",
+            "length": 52.1,
+            "rotation": 30.56,
+            "x": 213.06,
+            "y": 152.86,
+            "color": "abe323ff"
+        }
+    ],
+    "slots": [
+        {
+            "name": "Leg_R_00",
+            "bone": "back leg",
+            "attachment": "Leg_R_00"
+        },
+        {
+            "name": "Leg_R_01",
+            "bone": "back pelvis",
+            "attachment": "Leg_R_01"
+        },
+        {
+            "name": "Leg_R_02",
+            "bone": "back shoe2",
+            "attachment": "Leg_R_02"
+        },
+        {
+            "name": "Hand_R_00",
+            "bone": "back arm",
+            "attachment": "Hand_R_00"
+        },
+        {
+            "name": "Hand_R_10",
+            "bone": "back forearm",
+            "attachment": "Hand_R_10"
+        },
+        {
+            "name": "Body_00",
+            "bone": "torso",
+            "attachment": "Body_00"
+        },
+        {
+            "name": "Leg_L_00",
+            "bone": "pelvis",
+            "attachment": "Leg_L_00"
+        },
+        {
+            "name": "Leg_L_01",
+            "bone": "front leg",
+            "attachment": "Leg_L_01"
+        },
+        {
+            "name": "Leg_L_02",
+            "bone": "front shoe",
+            "attachment": "Leg_L_02"
+        },
+        {
+            "name": "Face_00",
+            "bone": "head",
+            "attachment": "Face_00"
+        },
+        {
+            "name": "Eye_L_00",
+            "bone": "root"
+        },
+        {
+            "name": "Eye_R_00",
+            "bone": "root"
+        },
+        {
+            "name": "Gun_Demo_1",
+            "bone": "root"
+        },
+        {
+            "name": "Head",
+            "bone": "root"
+        },
+        {
+            "name": "Gun_Demo_2",
+            "bone": "head"
+        },
+        {
+            "name": "Eye_L_0",
+            "bone": "head",
+            "attachment": "Eye_L_00"
+        },
+        {
+            "name": "Eye_R_0",
+            "bone": "head",
+            "attachment": "Eye_R_00"
+        },
+        {
+            "name": "Hand_L_00",
+            "bone": "fron arm",
+            "attachment": "Hand_L_00"
+        },
+        {
+            "name": "Hand_L_10",
+            "bone": "front forearm",
+            "attachment": "Hand_L_10"
+        },
+        {
+            "name": "Hand_R_1",
+            "bone": "root"
+        },
+        {
+            "name": "Hand_R_01",
+            "bone": "back wrist",
+            "attachment": "Hand_R_01"
+        },
+        {
+            "name": "Hand_L_01",
+            "bone": "front wrist",
+            "attachment": "Hand_L_01"
+        }
+    ],
+    "ik": [
+        {
+            "name": "aim-target-IK",
+            "order": 5,
+            "bones": [
+                "back-arm-IK3"
+            ],
+            "target": "aim-target-IK"
+        },
+        {
+            "name": "back-arm-IK",
+            "order": 7,
+            "bones": [
+                "back arm"
+            ],
+            "target": "back-arm-IK"
+        },
+        {
+            "name": "back-arm-IK2",
+            "order": 8,
+            "bones": [
+                "back forearm"
+            ],
+            "target": "back-arm-IK2"
+        },
+        {
+            "name": "back-arm-IK3",
+            "order": 9,
+            "bones": [
+                "back wrist"
+            ],
+            "target": "back-arm-IK3"
+        },
+        {
+            "name": "ewewr",
+            "bones": [
+                "rotation-torso"
+            ],
+            "target": "aim-target-IK"
+        },
+        {
+            "name": "ik1",
+            "order": 2,
+            "bones": [
+                "fron arm"
+            ],
+            "target": "ik1"
+        },
+        {
+            "name": "ik3",
+            "order": 4,
+            "bones": [
+                "front wrist"
+            ],
+            "target": "ik3"
+        },
+        {
+            "name": "target",
+            "order": 3,
+            "bones": [
+                "front forearm"
+            ],
+            "target": "target2"
+        }
+    ],
+    "transform": [
+        {
+            "name": "hand-movement",
+            "order": 6,
+            "bones": [
+                "back-arm-IK3"
+            ],
+            "target": "aim-target-IK",
+            "rotation": 2.29,
+            "x": -290.03,
+            "y": -11.58,
+            "mixRotate": 0,
+            "mixX": 0,
+            "mixScaleX": 0,
+            "mixShearY": 0
+        },
+        {
+            "name": "rotation-torso-limit",
+            "order": 1,
+            "bones": [
+                "torso"
+            ],
+            "target": "rotation-torso",
+            "rotation": 59.46,
+            "x": -187.13,
+            "y": -20.91,
+            "shearY": -0.7,
+            "mixRotate": 0.321,
+            "mixX": 0,
+            "mixScaleX": 0,
+            "mixShearY": 0
+        }
+    ],
+    "skins": [
+        {
+            "name": "default",
+            "attachments": {
+                "Leg_R_02": {
+                    "Leg_R_02": {
+                        "x": 46.82,
+                        "y": 27.37,
+                        "rotation": 7.13,
+                        "width": 197,
+                        "height": 84
+                    }
+                },
+                "Face_00": {
+                    "Face_00": {
+                        "x": 71.03,
+                        "y": -41.55,
+                        "rotation": -91.12,
+                        "width": 258,
+                        "height": 263
+                    }
+                },
+                "Hand_L_00": {
+                    "Hand_L_00": {
+                        "x": 63.08,
+                        "y": 8.66,
+                        "rotation": 123.56,
+                        "width": 134,
+                        "height": 174
+                    }
+                },
+                "Leg_L_00": {
+                    "Leg_L_00": {
+                        "x": 91.09,
+                        "y": -1.76,
+                        "rotation": 85.91,
+                        "width": 77,
+                        "height": 232
+                    }
+                },
+                "Leg_L_01": {
+                    "Leg_L_01": {
+                        "x": 102.79,
+                        "y": 6.63,
+                        "rotation": 105.69,
+                        "width": 100,
+                        "height": 202
+                    }
+                },
+                "Leg_L_02": {
+                    "Leg_L_02": {
+                        "x": 63.17,
+                        "y": 2.53,
+                        "rotation": 18.43,
+                        "width": 197,
+                        "height": 84
+                    }
+                },
+                "Eye_L_0": {
+                    "Eye_L_00": {
+                        "x": 67.07,
+                        "y": -49.98,
+                        "rotation": -91.12,
+                        "width": 151,
+                        "height": 164
+                    }
+                },
+                "Eye_R_0": {
+                    "Eye_R_00": {
+                        "x": 67.84,
+                        "y": -142.47,
+                        "rotation": -91.12,
+                        "width": 116,
+                        "height": 161
+                    }
+                },
+                "Hand_R_10": {
+                    "Hand_R_10": {
+                        "x": 74.1,
+                        "y": 0.48,
+                        "rotation": 44.05,
+                        "width": 129,
+                        "height": 127
+                    }
+                },
+                "Body_00": {
+                    "Body_00": {
+                        "x": 115.88,
+                        "y": -1.11,
+                        "rotation": -91.16,
+                        "width": 201,
+                        "height": 428
+                    }
+                },
+                "Hand_R_01": {
+                    "Hand_R_01": {
+                        "x": 91.52,
+                        "y": -12.22,
+                        "rotation": 42.81,
+                        "width": 169,
+                        "height": 189
+                    }
+                },
+                "Hand_L_10": {
+                    "Hand_L_10": {
+                        "x": 57.95,
+                        "y": 5.28,
+                        "rotation": 112.15,
+                        "width": 94,
+                        "height": 164
+                    }
+                },
+                "Hand_L_01": {
+                    "Hand_L_01": {
+                        "x": 64.3,
+                        "y": 12.46,
+                        "rotation": 101.36,
+                        "width": 176,
+                        "height": 203
+                    }
+                },
+                "Hand_R_00": {
+                    "Hand_R_00": {
+                        "x": 67.35,
+                        "y": -8.03,
+                        "rotation": 60.67,
+                        "width": 142,
+                        "height": 170
+                    }
+                },
+                "Leg_R_00": {
+                    "Leg_R_00": {
+                        "x": 67.82,
+                        "y": -4.11,
+                        "rotation": 69.29,
+                        "width": 124,
+                        "height": 222
+                    }
+                },
+                "Leg_R_01": {
+                    "Leg_R_01": {
+                        "x": 100.28,
+                        "y": -4.62,
+                        "rotation": 83.54,
+                        "width": 73,
+                        "height": 212
+                    }
+                }
+            }
+        }
+    ],
+    "animations": {
+        "Shoot": {}
+    }
+}

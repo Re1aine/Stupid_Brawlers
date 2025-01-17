@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine.SceneManagement;
 
 public static class SceneNavigator
@@ -8,23 +10,16 @@ public static class SceneNavigator
 
     private const string BootstrapSceneName = "BOOTSTRAP";
     private const string MenuSceneName = "MENU";
-
+    
     private static readonly int OverallSceneCount = SceneManager.sceneCountInBuildSettings;
     private static readonly int LevelSceneOffset = Enum.GetValues(typeof(GameScene)).Length;
 
     public static string GetName(GameScene gameScene) => 
         (int)gameScene == BootstrapSceneBuildIndex ? BootstrapSceneName : MenuSceneName;
-    
-    private static string GetNextSceneName()
-    {
-        var nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
-        
-        if (!IsSceneExist(nextSceneIndex))  
-            return string.Empty;
-            
-        return SceneManager.GetSceneByBuildIndex(nextSceneIndex).name;
-    }
 
+    public static GameScene GetCurrentGameScene() => 
+        SceneManager.GetActiveScene().buildIndex == BootstrapSceneBuildIndex ? GameScene.Bootstrap : GameScene.Menu;
+    
     public static string GetNextLvlScene()
     {
         int nextLvlSceneIndex = GetLvlSceneIndex() + 1;
@@ -36,6 +31,16 @@ public static class SceneNavigator
             return string.Empty;
 
         return GetSceneNameByIndex(nextLvlSceneIndex);
+    }
+
+    private static string GetNextSceneName()
+    {
+        var nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+        
+        if (!IsSceneExist(nextSceneIndex))  
+            return string.Empty;
+            
+        return SceneManager.GetSceneByBuildIndex(nextSceneIndex).name;
     }
 
     public static string GetCurrentLvlName() => 
