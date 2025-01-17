@@ -54,7 +54,7 @@ public class LevelOrchestrator : IDisposable
 
 
         _sceneContainer.EnemySpawnPoints.ForEach(p => _levelFactory.CreateEnemy(p.transform.position));
-        _levelFactory.CreatePlayer(_sceneContainer.PlayerSpawnPoint.transform.position,1000);
+        _levelFactory.CreatePlayer(_sceneContainer.PlayerSpawnPoint.transform.position,3);
         _levelFactory.CreateUIContainer();
         _levelFactory.CreatePopupMaster();
         

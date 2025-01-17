@@ -1,0 +1,167 @@
+
+Dummy.png
+size: 2018,358
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Body_00
+  rotate: true
+  xy: 822, 155
+  size: 201, 428
+  orig: 201, 428
+  offset: 0, 0
+  index: -1
+Eye_L_00
+  rotate: false
+  xy: 1873, 200
+  size: 143, 156
+  orig: 151, 164
+  offset: 4, 4
+  index: -1
+Eye_R_00
+  rotate: false
+  xy: 655, 2
+  size: 108, 149
+  orig: 116, 161
+  offset: 4, 6
+  index: -1
+Face_00
+  rotate: false
+  xy: 2, 93
+  size: 258, 263
+  orig: 258, 263
+  offset: 0, 0
+  index: -1
+Gun_Demo_1
+  rotate: false
+  xy: 1257, 4
+  size: 614, 161
+  orig: 614, 164
+  offset: 0, 3
+  index: -1
+Hand_L_00
+  rotate: false
+  xy: 1423, 182
+  size: 134, 174
+  orig: 134, 174
+  offset: 0, 0
+  index: -1
+Hand_L_01
+  rotate: false
+  xy: 542, 153
+  size: 176, 203
+  orig: 176, 203
+  offset: 0, 0
+  index: -1
+Hand_L_02
+  rotate: true
+  xy: 934, 2
+  size: 151, 157
+  orig: 151, 160
+  offset: 0, 3
+  index: -1
+Hand_L_03
+  rotate: true
+  xy: 765, 4
+  size: 148, 167
+  orig: 148, 167
+  offset: 0, 0
+  index: -1
+Hand_L_10
+  rotate: false
+  xy: 1559, 192
+  size: 94, 164
+  orig: 94, 164
+  offset: 0, 0
+  index: -1
+Hand_R_00
+  rotate: false
+  xy: 1873, 28
+  size: 142, 170
+  orig: 142, 170
+  offset: 0, 0
+  index: -1
+Hand_R_01
+  rotate: false
+  xy: 1252, 167
+  size: 169, 189
+  orig: 169, 189
+  offset: 0, 0
+  index: -1
+Hand_R_03
+  rotate: true
+  xy: 1759, 283
+  size: 73, 99
+  orig: 73, 101
+  offset: 0, 2
+  index: -1
+Hand_R_04
+  rotate: true
+  xy: 1093, 5
+  size: 148, 162
+  orig: 148, 164
+  offset: 0, 1
+  index: -1
+Hand_R_05
+  rotate: false
+  xy: 529, 6
+  size: 124, 136
+  orig: 124, 136
+  offset: 0, 0
+  index: -1
+Hand_R_06
+  rotate: false
+  xy: 1655, 212
+  size: 102, 144
+  orig: 102, 145
+  offset: 0, 1
+  index: -1
+Hand_R_10
+  rotate: true
+  xy: 400, 3
+  size: 129, 127
+  orig: 129, 127
+  offset: 0, 0
+  index: -1
+Leg_L_00
+  rotate: false
+  xy: 262, 124
+  size: 77, 232
+  orig: 77, 232
+  offset: 0, 0
+  index: -1
+Leg_L_01
+  rotate: false
+  xy: 720, 154
+  size: 100, 202
+  orig: 100, 202
+  offset: 0, 0
+  index: -1
+Leg_L_02
+  rotate: false
+  xy: 2, 7
+  size: 197, 84
+  orig: 197, 84
+  offset: 0, 0
+  index: -1
+Leg_R_00
+  rotate: false
+  xy: 341, 134
+  size: 124, 222
+  orig: 124, 222
+  offset: 0, 0
+  index: -1
+Leg_R_01
+  rotate: false
+  xy: 467, 144
+  size: 73, 212
+  orig: 73, 212
+  offset: 0, 0
+  index: -1
+Leg_R_02
+  rotate: false
+  xy: 201, 7
+  size: 197, 84
+  orig: 197, 84
+  offset: 0, 0
+  index: -1

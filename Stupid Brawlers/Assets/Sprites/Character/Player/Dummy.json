@@ -1,0 +1,767 @@
+{
+    "skeleton": {
+        "hash": "/Rj2+REvmp5Wr+mTlJR3sZwkenA",
+        "spine": "4.2.22",
+        "x": -268.06,
+        "y": -26.61,
+        "width": 638.59,
+        "height": 995.07,
+        "images": "./Textures/",
+        "audio": "C:/Users/79376/Desktop/DummyCharacter/\u0420\u045c\u0420\u0455\u0420\u0406\u0420\u00b0\u0421\u040f \u0420\u0457\u0420\u00b0\u0420\u0457\u0420\u0454\u0420\u00b0"
+    },
+    "bones": [
+        {
+            "name": "root",
+            "rotation": -0.02
+        },
+        {
+            "name": "hips",
+            "parent": "root",
+            "x": -101.83,
+            "y": 424.21
+        },
+        {
+            "name": "torso",
+            "parent": "root",
+            "length": 195.45,
+            "rotation": 89.31,
+            "x": -39.28,
+            "y": 463.93,
+            "shearX": 0.71
+        },
+        {
+            "name": "front hip joint",
+            "parent": "torso",
+            "length": 53.7,
+            "rotation": 135.91,
+            "x": -10.91,
+            "y": 28.27,
+            "color": "abe323ff"
+        },
+        {
+            "name": "pelvis",
+            "parent": "front hip joint",
+            "length": 186.7,
+            "rotation": 35.51,
+            "x": 48.93,
+            "y": -0.67,
+            "color": "ff3f00ff"
+        },
+        {
+            "name": "front leg",
+            "parent": "pelvis",
+            "length": 204.95,
+            "rotation": -19.78,
+            "x": 186.23,
+            "y": -6.63
+        },
+        {
+            "name": "front leg2",
+            "parent": "front leg",
+            "length": 54.31,
+            "rotation": 13.17,
+            "x": 188.39,
+            "y": -1.55
+        },
+        {
+            "name": "neck",
+            "parent": "torso",
+            "length": 60.63,
+            "rotation": 0.69,
+            "x": 230.42,
+            "y": -1.69,
+            "scaleX": 1.3076
+        },
+        {
+            "name": "front shoe",
+            "parent": "front leg2",
+            "length": 133.2,
+            "rotation": 57.08,
+            "x": 59.66,
+            "y": -0.43,
+            "scaleX": 0.9169,
+            "scaleY": 0.9169
+        },
+        {
+            "name": "back hip joint",
+            "parent": "torso",
+            "length": 66.53,
+            "rotation": -145.37,
+            "x": -28.8,
+            "y": 6.64,
+            "color": "abe323ff"
+        },
+        {
+            "name": "back leg",
+            "parent": "back hip joint",
+            "length": 161.48,
+            "rotation": -50.25,
+            "x": 67.01,
+            "y": -5.26,
+            "color": "abe323ff"
+        },
+        {
+            "name": "back pelvis",
+            "parent": "back leg",
+            "length": 196.5,
+            "rotation": -14.25,
+            "x": 165.57,
+            "y": 0.42
+        },
+        {
+            "name": "back shoe",
+            "parent": "back pelvis",
+            "length": 62.14,
+            "rotation": -9.5,
+            "x": 195.08,
+            "y": 2.17
+        },
+        {
+            "name": "fron arm",
+            "parent": "torso",
+            "length": 151.23,
+            "rotation": 129.17,
+            "x": 215.76,
+            "y": 96.95
+        },
+        {
+            "name": "back shoe2",
+            "parent": "back shoe",
+            "length": 118.81,
+            "rotation": 70.17,
+            "x": 58.78,
+            "y": 1.23
+        },
+        {
+            "name": "head",
+            "parent": "neck",
+            "length": 181.8,
+            "rotation": -0.95,
+            "x": 67.78,
+            "y": -0.75,
+            "scaleX": 0.6725
+        },
+        {
+            "name": "front forearm",
+            "parent": "fron arm",
+            "length": 123.54,
+            "rotation": 106.88,
+            "x": 159.88,
+            "y": -3.25
+        },
+        {
+            "name": "front wrist",
+            "parent": "front forearm",
+            "length": 125.68,
+            "rotation": 8.61,
+            "x": 160.42,
+            "y": -3.23,
+            "scaleX": 0.7927,
+            "scaleY": 0.7927
+        },
+        {
+            "name": "back arm",
+            "parent": "torso",
+            "length": 149.7,
+            "rotation": 132.48,
+            "x": 229.19,
+            "y": -78.72
+        },
+        {
+            "name": "back forearm",
+            "parent": "back arm",
+            "length": 126.76,
+            "rotation": 114.78,
+            "x": 153.57,
+            "y": -1.31,
+            "shearX": -0.01,
+            "color": "ff3f00ff"
+        },
+        {
+            "name": "back wrist",
+            "parent": "back forearm",
+            "length": 145.25,
+            "rotation": -13.93,
+            "x": 126.9,
+            "y": 0.15
+        },
+        {
+            "name": "rotation-limit",
+            "parent": "hips",
+            "length": 34.03,
+            "rotation": -6.2,
+            "x": 135.95,
+            "y": 128.54,
+            "color": "abe323ff"
+        },
+        {
+            "name": "gun",
+            "parent": "rotation-limit",
+            "length": 299.85,
+            "rotation": -5.97,
+            "x": 8.59,
+            "y": -29.55
+        },
+        {
+            "name": "front-hand-fingers-IK",
+            "parent": "gun",
+            "rotation": -0.55,
+            "x": -1.41,
+            "y": -56.8,
+            "color": "ff3f00ff"
+        },
+        {
+            "name": "front-wrist-IK",
+            "parent": "front-hand-fingers-IK",
+            "x": -80.67,
+            "y": 50.32,
+            "color": "ff3f00ff"
+        },
+        {
+            "name": "back-hand-fingers-IK",
+            "parent": "gun",
+            "rotation": -16.79,
+            "x": 193.12,
+            "y": -52.71,
+            "color": "ff3f00ff"
+        },
+        {
+            "name": "back-wrist-IK",
+            "parent": "back-hand-fingers-IK",
+            "x": -101.29,
+            "y": 37.61,
+            "color": "ff3f00ff"
+        },
+        {
+            "name": "aim-target-IK",
+            "parent": "root",
+            "x": 796.31,
+            "y": 561.67,
+            "color": "ff3f00ff"
+        },
+        {
+            "name": "shootPoint",
+            "parent": "gun",
+            "rotation": -1.84,
+            "x": 380.83,
+            "y": -9.62
+        },
+        {
+            "name": "1",
+            "parent": "root",
+            "x": -119.53,
+            "y": 238.79,
+            "color": "ff3f00ff"
+        },
+        {
+            "name": "2",
+            "parent": "root",
+            "x": 84.08,
+            "y": 263.95,
+            "color": "ff3f00ff"
+        },
+        {
+            "name": "1.1",
+            "parent": "1",
+            "rotation": 11.93,
+            "x": -94.76,
+            "y": -176.41,
+            "color": "ff3f00ff"
+        },
+        {
+            "name": "2.2",
+            "parent": "2",
+            "rotation": -8.86,
+            "x": -9.55,
+            "y": -167.89,
+            "color": "ff3f00ff"
+        },
+        {
+            "name": "1.3",
+            "parent": "1.1",
+            "x": 17.31,
+            "y": -53.7,
+            "color": "ff3f00ff"
+        },
+        {
+            "name": "2.3",
+            "parent": "2.2",
+            "x": 32.19,
+            "y": -67.47,
+            "color": "ff3f00ff"
+        },
+        {
+            "name": "1.4",
+            "parent": "1.3",
+            "rotation": -11.93,
+            "x": 100.24,
+            "y": -45.1,
+            "color": "ff3f00ff"
+        },
+        {
+            "name": "2.4",
+            "parent": "2.3",
+            "rotation": 8.86,
+            "x": 80.93,
+            "y": -13.31,
+            "color": "ff3f00ff"
+        }
+    ],
+    "slots": [
+        {
+            "name": "Leg_R_00",
+            "bone": "back leg",
+            "attachment": "Leg_R_00"
+        },
+        {
+            "name": "Leg_R_01",
+            "bone": "back pelvis",
+            "attachment": "Leg_R_01"
+        },
+        {
+            "name": "Leg_R_02",
+            "bone": "back shoe2",
+            "attachment": "Leg_R_02"
+        },
+        {
+            "name": "Hand_R_00",
+            "bone": "back arm",
+            "attachment": "Hand_R_00"
+        },
+        {
+            "name": "Hand_R_10",
+            "bone": "back forearm",
+            "attachment": "Hand_R_10"
+        },
+        {
+            "name": "Hand_R_01",
+            "bone": "back wrist"
+        },
+        {
+            "name": "Body_00",
+            "bone": "torso",
+            "attachment": "Body_00"
+        },
+        {
+            "name": "Leg_L_00",
+            "bone": "pelvis",
+            "attachment": "Leg_L_00"
+        },
+        {
+            "name": "Leg_L_01",
+            "bone": "front leg",
+            "attachment": "Leg_L_01"
+        },
+        {
+            "name": "Leg_L_02",
+            "bone": "front shoe",
+            "attachment": "Leg_L_02"
+        },
+        {
+            "name": "Face_00",
+            "bone": "head",
+            "attachment": "Face_00"
+        },
+        {
+            "name": "Eye_L_00",
+            "bone": "root"
+        },
+        {
+            "name": "Eye_R_00",
+            "bone": "root"
+        },
+        {
+            "name": "Gun_Demo_1",
+            "bone": "root"
+        },
+        {
+            "name": "Head",
+            "bone": "root"
+        },
+        {
+            "name": "Gun_Demo_2",
+            "bone": "head"
+        },
+        {
+            "name": "Eye_L_0",
+            "bone": "head",
+            "attachment": "Eye_L_00"
+        },
+        {
+            "name": "Eye_R_0",
+            "bone": "head",
+            "attachment": "Eye_R_00"
+        },
+        {
+            "name": "Hand_R_05",
+            "bone": "back wrist",
+            "attachment": "Hand_R_05"
+        },
+        {
+            "name": "Gun_Demo_3",
+            "bone": "gun",
+            "attachment": "Gun_Demo_1"
+        },
+        {
+            "name": "Hand_L_00",
+            "bone": "fron arm",
+            "attachment": "Hand_L_00"
+        },
+        {
+            "name": "Hand_L_10",
+            "bone": "front forearm",
+            "attachment": "Hand_L_10"
+        },
+        {
+            "name": "Hand_L_01",
+            "bone": "front wrist",
+            "attachment": "Hand_L_03"
+        },
+        {
+            "name": "Hand_R_06",
+            "bone": "back wrist",
+            "attachment": "Hand_R_06"
+        }
+    ],
+    "ik": [
+        {
+            "name": "1",
+            "order": 8,
+            "bones": [
+                "pelvis"
+            ],
+            "target": "1"
+        },
+        {
+            "name": "1.1",
+            "order": 10,
+            "bones": [
+                "front leg"
+            ],
+            "target": "1.1"
+        },
+        {
+            "name": "1.3",
+            "order": 12,
+            "bones": [
+                "front leg2"
+            ],
+            "target": "1.3"
+        },
+        {
+            "name": "1.4",
+            "order": 14,
+            "bones": [
+                "front shoe"
+            ],
+            "target": "1.4"
+        },
+        {
+            "name": "2",
+            "order": 9,
+            "bones": [
+                "back leg"
+            ],
+            "target": "2"
+        },
+        {
+            "name": "2.2",
+            "order": 11,
+            "bones": [
+                "back pelvis"
+            ],
+            "target": "2.2"
+        },
+        {
+            "name": "2.3",
+            "order": 13,
+            "bones": [
+                "back shoe"
+            ],
+            "target": "2.3"
+        },
+        {
+            "name": "2.4",
+            "order": 15,
+            "bones": [
+                "back shoe2"
+            ],
+            "target": "2.4"
+        },
+        {
+            "name": "aim-target-IK",
+            "order": 1,
+            "bones": [
+                "gun"
+            ],
+            "target": "aim-target-IK"
+        },
+        {
+            "name": "back-hand-fingers-IK",
+            "order": 7,
+            "bones": [
+                "back wrist"
+            ],
+            "target": "back-hand-fingers-IK"
+        },
+        {
+            "name": "back-wrist-IK",
+            "order": 6,
+            "bones": [
+                "back arm",
+                "back forearm"
+            ],
+            "target": "back-wrist-IK"
+        },
+        {
+            "name": "front-hand-fingers-IK",
+            "order": 5,
+            "bones": [
+                "front wrist"
+            ],
+            "target": "front-hand-fingers-IK"
+        },
+        {
+            "name": "front-wrist-IK",
+            "order": 4,
+            "bones": [
+                "fron arm",
+                "front forearm"
+            ],
+            "target": "front-wrist-IK"
+        },
+        {
+            "name": "rotation-limit-IK",
+            "bones": [
+                "rotation-limit"
+            ],
+            "target": "aim-target-IK"
+        }
+    ],
+    "transform": [
+        {
+            "name": "gun-movement",
+            "order": 2,
+            "bones": [
+                "gun"
+            ],
+            "target": "aim-target-IK",
+            "rotation": 2.15,
+            "x": -5605.77,
+            "y": -212.57,
+            "mixRotate": 0,
+            "mixX": 0.01,
+            "mixScaleX": 0,
+            "mixShearY": 0
+        },
+        {
+            "name": "head-rotation",
+            "order": 16,
+            "bones": [
+                "head"
+            ],
+            "target": "rotation-limit",
+            "rotation": 95.07,
+            "x": -94.21,
+            "y": 224.25,
+            "scaleX": -0.1208,
+            "scaleY": 0.0002,
+            "shearY": -1.2,
+            "mixRotate": 0.6,
+            "mixX": 0,
+            "mixScaleX": 0,
+            "mixShearY": 0
+        },
+        {
+            "name": "torso-rotation",
+            "order": 3,
+            "bones": [
+                "torso"
+            ],
+            "target": "rotation-limit",
+            "rotation": 96.32,
+            "x": -63.22,
+            "y": -96.35,
+            "shearY": -0.7,
+            "mixRotate": 0.491,
+            "mixX": 0,
+            "mixScaleX": 0,
+            "mixShearY": 0
+        }
+    ],
+    "skins": [
+        {
+            "name": "default",
+            "attachments": {
+                "Leg_R_02": {
+                    "Leg_R_02": {
+                        "x": 26.32,
+                        "y": 15.62,
+                        "rotation": 12.39,
+                        "width": 197,
+                        "height": 84
+                    }
+                },
+                "Face_00": {
+                    "Face_00": {
+                        "x": 71.03,
+                        "y": -41.55,
+                        "rotation": -91.12,
+                        "width": 258,
+                        "height": 263
+                    }
+                },
+                "Hand_R_05": {
+                    "Hand_R_05": {
+                        "x": 79.92,
+                        "y": 7.92,
+                        "rotation": 63.41,
+                        "width": 124,
+                        "height": 136
+                    }
+                },
+                "Leg_L_00": {
+                    "Leg_L_00": {
+                        "x": 91.09,
+                        "y": -1.76,
+                        "rotation": 85.91,
+                        "width": 77,
+                        "height": 232
+                    }
+                },
+                "Leg_L_01": {
+                    "Leg_L_01": {
+                        "x": 102.79,
+                        "y": 6.63,
+                        "rotation": 105.69,
+                        "width": 100,
+                        "height": 202
+                    }
+                },
+                "Leg_L_02": {
+                    "Leg_L_02": {
+                        "x": 18.35,
+                        "y": 13.93,
+                        "scaleX": 1.0906,
+                        "scaleY": 1.0906,
+                        "rotation": 8.2,
+                        "width": 197,
+                        "height": 84
+                    }
+                },
+                "Eye_L_0": {
+                    "Eye_L_00": {
+                        "x": 67.07,
+                        "y": -49.98,
+                        "rotation": -91.12,
+                        "width": 151,
+                        "height": 164
+                    }
+                },
+                "Eye_R_0": {
+                    "Eye_R_00": {
+                        "x": 67.84,
+                        "y": -142.47,
+                        "rotation": -91.12,
+                        "width": 116,
+                        "height": 161
+                    }
+                },
+                "Hand_R_10": {
+                    "Hand_R_10": {
+                        "x": 74.1,
+                        "y": 0.48,
+                        "rotation": 44.05,
+                        "width": 129,
+                        "height": 127
+                    }
+                },
+                "Body_00": {
+                    "Body_00": {
+                        "x": 115.88,
+                        "y": -1.11,
+                        "rotation": -91.16,
+                        "width": 201,
+                        "height": 428
+                    }
+                },
+                "Hand_L_10": {
+                    "Hand_L_10": {
+                        "x": 57.95,
+                        "y": 5.28,
+                        "rotation": 112.15,
+                        "width": 94,
+                        "height": 164
+                    }
+                },
+                "Hand_R_06": {
+                    "Hand_R_06": {
+                        "x": 87.27,
+                        "y": 11.02,
+                        "rotation": 47.48,
+                        "width": 102,
+                        "height": 145
+                    }
+                },
+                "Hand_L_00": {
+                    "Hand_L_00": {
+                        "x": 63.08,
+                        "y": 8.66,
+                        "rotation": 123.56,
+                        "width": 134,
+                        "height": 174
+                    }
+                },
+                "Gun_Demo_3": {
+                    "Gun_Demo_1": {
+                        "x": 64.37,
+                        "y": -50.13,
+                        "rotation": -4.35,
+                        "width": 614,
+                        "height": 164
+                    }
+                },
+                "Hand_L_01": {
+                    "Hand_L_03": {
+                        "x": 50.12,
+                        "y": 7.63,
+                        "rotation": 93.7,
+                        "width": 148,
+                        "height": 167
+                    }
+                },
+                "Hand_R_00": {
+                    "Hand_R_00": {
+                        "x": 67.35,
+                        "y": -8.03,
+                        "rotation": 60.67,
+                        "width": 142,
+                        "height": 170
+                    }
+                },
+                "Leg_R_00": {
+                    "Leg_R_00": {
+                        "x": 67.82,
+                        "y": -4.11,
+                        "rotation": 69.29,
+                        "width": 124,
+                        "height": 222
+                    }
+                },
+                "Leg_R_01": {
+                    "Leg_R_01": {
+                        "x": 100.28,
+                        "y": -4.62,
+                        "rotation": 83.54,
+                        "width": 73,
+                        "height": 212
+                    }
+                }
+            }
+        }
+    ],
+    "animations": {
+        "Entry": {},
+        "Shoot": {}
+    }
+}
